@@ -1,0 +1,7 @@
+MLX42
+cub3d
+*/*.o
+*/*/*.o
+.vscode
+tester_cub3d/*.err
+tester_cub3d/*.ok
