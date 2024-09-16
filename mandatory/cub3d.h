@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 09:41:36 by rgobet            #+#    #+#             */
-/*   Updated: 2024/09/16 09:51:14 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/16 11:22:17 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@ typedef struct textures
 	mlx_texture_t	*south;
 	mlx_texture_t	*east;
 	mlx_texture_t	*west;
-	mlx_texture_t	*cut;
-	mlx_texture_t	*weapons;
 	mlx_texture_t	*crosshair;
 }					t_textures;
 

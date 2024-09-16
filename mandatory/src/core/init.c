@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 07:15:58 by rgobet            #+#    #+#             */
-/*   Updated: 2024/09/16 10:50:27 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/16 11:09:10 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void	get_colors(char *str, t_vars *vars)
 			j++;
 		}
 	}
+	ft_free(rgb);
 	floor_color(str, vars);
 }
 
