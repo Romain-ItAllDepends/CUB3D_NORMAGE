@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 10:28:53 by rgobet            #+#    #+#             */
-/*   Updated: 2024/09/15 10:34:07 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/16 09:52:08 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int32_t	ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
 	return (r << 24 | g << 16 | b << 8 | a);
 }
 
-void	player_om_mini_map(t_vars *vars)
+static void	player_on_mini_map(t_vars *vars)
 {
 	int player_x;
 	int player_y;
@@ -63,4 +63,5 @@ void	build_mini_map(t_vars *vars)
 		}
 		x++;
 	}
+	player_on_mini_map(vars);
 }

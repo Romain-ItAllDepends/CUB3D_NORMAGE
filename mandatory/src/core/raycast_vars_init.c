@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 08:55:47 by rgobet            #+#    #+#             */
-/*   Updated: 2024/09/15 09:51:39 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/16 09:13:58 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,27 +16,27 @@ void	get_directions(t_vars *vars, int i, int j)
 {
 	if (vars->map[i][j] == 'N')
 	{
-		vars->facing = NORTH;
-		vars->dirX = -1;
-		vars->dirY = 0;
+		vars->raycast->facing = NORTH;
+		vars->raycast->dirx = -1;
+		vars->raycast->diry = 0;
 	}
 	else if (vars->map[i][j] == 'S')
 	{
-		vars->facing = SOUTH;
-		vars->dirX = 1;
-		vars->dirY = 0;
+		vars->raycast->facing = SOUTH;
+		vars->raycast->dirx = 1;
+		vars->raycast->diry = 0;
 	}
 	else if (vars->map[i][j] == 'E')
 	{
-		vars->facing = EAST;
-		vars->dirX = 0;
-		vars->dirY = 1;
+		vars->raycast->facing = EAST;
+		vars->raycast->dirx = 0;
+		vars->raycast->diry = 1;
 	}
 	else if (vars->map[i][j] == 'W')
 	{
-		vars->facing = WEST;
-		vars->dirX = 0;
-		vars->dirY = -1;
+		vars->raycast->facing = WEST;
+		vars->raycast->dirx = 0;
+		vars->raycast->diry = -1;
 	}
 }
 
@@ -54,7 +54,7 @@ void	get_player_pos(t_vars *vars)
 			if (vars->map[i][j] == 'N' || vars->map[i][j] == 'S'
 				|| vars->map[i][j] == 'E' || vars->map[i][j] == 'W')
 			{
-				vars->->raycast->posx = i;
+				vars->raycast->posx = i;
 				vars->raycast->posy = j;
 				get_directions(vars, i, j);
 			}

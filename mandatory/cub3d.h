@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 09:41:36 by rgobet            #+#    #+#             */
-/*   Updated: 2024/09/15 10:31:10 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/16 09:51:14 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ typedef struct vars
 	t_raycast			*raycast;
 	int32_t				mouse_pos[2];
 	mlx_win_cursor_t	*cursor;
-	mlx_image_t			*images;
+	t_images			*images;
 	mlx_t				*window;
 	t_textures			*textures;
 }				t_vars;
@@ -109,6 +109,15 @@ void	initialize_window(t_vars *vars);
 void	initialize_mini_map(t_vars *vars);
 void	north_south_textures(char *str, t_vars *vars, char dir);
 void	get_parameters(t_vars *vars, char **file);
+void	get_player_pos(t_vars *vars);
+void	get_colors(char *str, t_vars *vars);
+void	get_textures(char *str, t_vars *vars);
+
+/*
+* Mini map
+*/
+
+void	build_mini_map(t_vars *vars);
 
 /*
 * Parsing

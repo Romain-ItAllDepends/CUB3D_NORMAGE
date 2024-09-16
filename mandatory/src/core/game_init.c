@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 02:54:38 by vgodart           #+#    #+#             */
-/*   Updated: 2024/09/15 09:51:22 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/16 09:50:36 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ void	initialize_window(t_vars *vars)
 
 void	initialize_mini_map(t_vars *vars)
 {
-	vars->mini_map = mlx_new_image(vars->window, len_db_char(vars->map) * 100,
-			WIDTH);
-	if (!vars->mini_map)
+	vars->images->mini_map = mlx_new_image(
+		vars->window, len_db_char(vars->map) * 100, WIDTH);
+	if (!vars->images->mini_map)
 	{
 		ft_putstr_fd(
 			"Error\nAn error occurred while creating the mini map image!\n", 2);

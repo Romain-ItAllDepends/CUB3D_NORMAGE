@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 07:15:58 by rgobet            #+#    #+#             */
-/*   Updated: 2024/09/15 09:51:58 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/16 10:50:27 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,15 @@ void	floor_color(char *str, t_vars *vars)
 		}
 	}
 	if (!rgb && str[i] != '\0'
-		&& (str[skip_space(str)] == 'C' || str[skip_space(str)] == 'F'))
+		&& !(str[skip_space(str)] == 'C' || str[skip_space(str)] == 'F'))
+	{
+		printf("C'EST LA MERDE !F, |%s|\n", &str[skip_space(str)]);
 		color_error(vars);
+	}
 	ft_free(rgb);
 }
 
-static void	get_colors(char *str, t_vars *vars)
+void	get_colors(char *str, t_vars *vars)
 {
 	int		i;
 	int		j;
@@ -70,13 +73,10 @@ static void	get_colors(char *str, t_vars *vars)
 			j++;
 		}
 	}
-	if (!rgb && str[i] != '\0'
-		&& (str[skip_space(str)] == 'C' || str[skip_space(str)] == 'F'))
-		color_error(vars);
-	ft_free(rgb);
+	floor_color(str, vars);
 }
 
-static void	get_textures(char *str, t_vars *vars)
+void	get_textures(char *str, t_vars *vars)
 {
 	int	i;
 	int	tmp;
@@ -122,8 +122,8 @@ void	init(t_vars *vars, char *str)
 		free(vars);
 		error_malloc(fd, file);
 	}
+	raycast_vars_init(vars);
 	get_player_pos(vars);
 	get_parameters(vars, file);
 	ft_free(file);
-	raycast_vars_init(vars);
 }
