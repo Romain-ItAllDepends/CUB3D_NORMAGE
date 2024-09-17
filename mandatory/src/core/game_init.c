@@ -25,12 +25,11 @@ void	initialize_window(t_vars *vars)
 
 void	initialize_mini_map(t_vars *vars)
 {
-	vars->images->mini_map = mlx_new_image(
-		vars->window, len_db_char(vars->map) * 100, WIDTH);
+	vars->images->mini_map = mlx_new_image(vars->window, len_db_char(vars->map)
+			* 100, WIDTH);
 	if (!vars->images->mini_map)
 	{
-		ft_putstr_fd(
-			"Error\nAn error occurred while creating the mini map image!\n", 2);
+		ft_putstr_fd("Error\noccurred while creating the mini map image!\n", 2);
 		ft_free_vars(vars, 1);
 		exit(1);
 	}
@@ -38,16 +37,16 @@ void	initialize_mini_map(t_vars *vars)
 
 void	resize_images(t_vars *vars)
 {
-	vars->images->north = mlx_texture_to_image(
-			vars->window, vars->textures->north);
-	vars->images->south = mlx_texture_to_image(
-			vars->window, vars->textures->south);
-	vars->images->east = mlx_texture_to_image(
-			vars->window, vars->textures->east);
-	vars->images->west = mlx_texture_to_image(
-			vars->window, vars->textures->west);
-	if (!vars->images->north || !vars->images->south
-		|| !vars->images->east || !vars->images->west)
+	vars->images->north = mlx_texture_to_image(vars->window,
+			vars->textures->north);
+	vars->images->south = mlx_texture_to_image(vars->window,
+			vars->textures->south);
+	vars->images->east = mlx_texture_to_image(vars->window,
+			vars->textures->east);
+	vars->images->west = mlx_texture_to_image(vars->window,
+			vars->textures->west);
+	if (!vars->images->north || !vars->images->south || !vars->images->east
+		|| !vars->images->west)
 		texture_error(vars);
 	if (mlx_resize_image(vars->images->north, TEXWIDTH, TEXHEIGHT) == 0)
 		resize_error(vars);
