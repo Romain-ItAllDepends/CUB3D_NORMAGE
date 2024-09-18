@@ -6,11 +6,17 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 10:30:37 by rgobet            #+#    #+#             */
-/*   Updated: 2024/09/18 08:34:16 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/18 12:15:54 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
+
+void	error_extention(void)
+{
+	ft_putstr_fd("Error\nNeed .cub extension! ❌\n", 2);
+	exit(1);
+}
 
 void	error_fd(void)
 {

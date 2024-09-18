@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 09:41:36 by rgobet            #+#    #+#             */
-/*   Updated: 2024/09/18 08:47:08 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/18 12:16:12 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,6 +180,7 @@ void					setup_hooks(t_vars *vars);
 void					nb_arg_error(void);
 void					empty_arg(void);
 void					error_fd(void);
+void					error_extention(void);
 int						verify_split(char **file, char *getter);
 int						verify_rgb(char **rgb, int i);
 void					verify_map(char **map, int i);
