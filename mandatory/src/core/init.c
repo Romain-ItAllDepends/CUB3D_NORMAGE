@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 07:15:58 by rgobet            #+#    #+#             */
-/*   Updated: 2024/09/16 11:09:10 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/18 12:17:59 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,7 @@ void	floor_color(char *str, t_vars *vars)
 	}
 	if (!rgb && str[i] != '\0'
 		&& !(str[skip_space(str)] == 'C' || str[skip_space(str)] == 'F'))
-	{
-		printf("C'EST LA MERDE !F, |%s|\n", &str[skip_space(str)]);
 		color_error(vars);
-	}
 	ft_free(rgb);
 }
 

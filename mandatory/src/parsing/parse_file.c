@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 10:08:10 by rgobet            #+#    #+#             */
-/*   Updated: 2024/09/18 12:16:33 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/18 12:18:54 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,6 @@ static void	parse_file_content(int fd)
 	printf(" - Map check  ✅\n");
 	ft_free(map);
 }
-
 
 void	parse_file(char *file)
 {

@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 12:55:11 by rgobet            #+#    #+#             */
-/*   Updated: 2024/09/15 08:49:14 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/18 12:18:28 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,6 @@ int	start_map(char **file)
 			return (i);
 		i++;
 	}
-	ft_free(file); // a verif
+	ft_free(file);
 	return (-1);
 }
