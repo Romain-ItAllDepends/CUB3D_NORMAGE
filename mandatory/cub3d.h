@@ -139,11 +139,11 @@ void					rotate_camera(t_vars *vars, double rotSpeed);
  * Raycaster_Move_Utils
  */
 
-void					forward_and_back_utils_W(t_vars *vars,
+void					forward_and_back_utils_e(t_vars *vars,
 							double moveSpeed);
-void					forward_and_back_utils_W(t_vars *vars,
+void					forward_and_back_utils_w(t_vars *vars,
 							double moveSpeed);
-void					forward_and_back_utils_S(t_vars *vars,
+void					forward_and_back_utils_s(t_vars *vars,
 							double moveSpeed);
 void					right_and_left_utils(t_vars *vars, double moveSpeed);
 

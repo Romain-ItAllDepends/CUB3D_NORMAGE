@@ -82,9 +82,7 @@ void	rotate_camera(t_vars *vars, double rotSpeed)
 			+ vars->raycast->planey * cos(-rotSpeed);
 	}
 	if (mlx_is_key_down(vars->window, MLX_KEY_LEFT))
-	{
-		rotate_camera_utils(vars, rotSpeed, old_dirx, old_planex);
-	}
+		rc_utils(vars, rotSpeed, old_dirx, old_planex);
 }
 
 static void	rc_utils(t_vars *vars, double rotSpeed, double old_dirx,
