@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 09:41:36 by rgobet            #+#    #+#             */
-/*   Updated: 2024/09/16 11:22:17 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/18 08:47:08 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,7 @@ int						ft_strlen(const char *str);
 int						len_db_char(char **str);
 int						ft_strcspn(const char *s, char *reject);
 char					*ft_strjoin(char const *s1, char const *s2);
+char					*ft_strjoin_free_s1(char *s1, char *s2);
 int						ft_atoi(const char *str);
 int						ft_isalpha(char *str);
 void					*ft_calloc(size_t nmemb, size_t size);

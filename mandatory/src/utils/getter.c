@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:14:48 by rgobet            #+#    #+#             */
-/*   Updated: 2024/09/16 11:00:12 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/18 08:44:20 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	**get_file(int fd)
 	{
 		size_get = read(fd, buffer, 1);
 		if (size_get > 0)
-			getter = ft_strjoin(getter, buffer);
+			getter = ft_strjoin_free_s1(getter, buffer);
 		buffer[0] = 0;
 	}
 	if (size_get == -1)

@@ -6,11 +6,82 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 10:08:10 by rgobet            #+#    #+#             */
-/*   Updated: 2024/09/15 08:42:11 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/18 12:10:32 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
+
+static int	verif_texture(char *str)
+{
+	static int	north;
+	static int	south;
+	static int	east;
+	static int	west;
+
+	str = &str[skip_space(str)];
+	if (str && str[0] && str[1] && str[2]
+		&& (str[0] == 'S' && str[1] == 'O')
+		&& (str[2] == ' ' || str[2] == '\t'))
+		south++;
+	if (str && str[0] && str[1] && str[2]
+		&& (str[0] == 'N' && str[1] == 'O')
+		&& (str[2] == ' ' || str[2] == '\t'))
+		north++;
+	if (str && str[0] && str[1] && str[2]
+		&& (str[0] == 'W' && str[1] == 'E')
+		&& (str[2] == ' ' || str[2] == '\t'))
+		west++;
+	if (str && str[0] && str[1] && str[2]
+		&& (str[0] == 'E' && str[1] == 'A')
+		&& (str[2] == ' ' || str[2] == '\t'))
+		east++;
+	if (north == 1 && south == 1 && west == 1 && east == 1)
+		return (1);
+	return (0);
+}
+
+static int	verif_color(char *str)
+{
+	str = &str[skip_space(str)];
+	if (str && str[0] && str[1]
+		&& str[0] == 'F'
+		&& (str[1] == ' ' || str[1] == '\t'))
+		return (1);
+	else if (str && str[0] && str[1]
+		&& str[0] == 'C'
+		&& (str[1] == ' ' || str[1] == '\t'))
+		return (2);
+	return (0);
+}
+
+static void	verif_paramaters(char **file)
+{
+	int	i;
+	int	floor;
+	int	ceiling;
+	int	textures;
+
+	i = 0;
+	floor = 0;
+	ceiling = 0;
+	textures = 0;
+	while (file && file[i])
+	{
+		if (verif_color(file[i]) == 1)
+			floor++;
+		else if (verif_color(file[i]) == 2)
+			ceiling++;
+		else
+			textures = verif_texture(file[i]);
+		i++;
+	}
+	if (ceiling != 1 || floor != 1 || textures != 1)
+	{
+		free(file);
+		file = NULL;
+	}
+}
 
 static void	parse_file_content(int fd)
 {
@@ -20,6 +91,12 @@ static void	parse_file_content(int fd)
 	file = get_file(fd);
 	close(fd);
 	printf(" - Arg check  ✅\n");
+	verif_paramaters(file);
+	if (!file)
+	{
+		ft_putstr_fd("Error\nWrong number of parameters! ❌\n", 2);
+		exit(1);
+	}
 	check_data(file);
 	printf(" - Data check ✅\n");
 	map = get_map(file);
@@ -30,6 +107,7 @@ static void	parse_file_content(int fd)
 	printf(" - Map check  ✅\n");
 	ft_free(map);
 }
+
 
 void	parse_file(char *file)
 {
@@ -53,8 +131,14 @@ void	parse_file(char *file)
 				parse_file_content(fd);
 		}
 		else
+		{
 			ft_putstr_fd("Error\nNeed .cub extension! ❌\n", 2);
+			exit(1);
+		}
 	}
 	else
+	{
 		ft_putstr_fd("Error\nNeed .cub extension! ❌\n", 2);
+		exit(1);
+	}
 }

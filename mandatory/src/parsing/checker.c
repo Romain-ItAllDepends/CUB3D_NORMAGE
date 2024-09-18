@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 15:17:49 by rgobet            #+#    #+#             */
-/*   Updated: 2024/09/15 09:21:09 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/18 12:07:54 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,6 @@ static int	info_checker(char *str)
 		&& (str[0] == 'F' || str[0] == 'C')
 		&& (str[1] == ' ' || str[1] == '\t'))
 		exit_code = rgb_checker(&str[1]);
-	else
-	{
-		ft_putstr_fd("Error\nSome characters have infiltrated the file! ❌\n",
-			2);
-		return (1);
-	}
 	return (exit_code);
 }
 

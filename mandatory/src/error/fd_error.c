@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 10:30:37 by rgobet            #+#    #+#             */
-/*   Updated: 2024/08/12 11:42:13 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/18 08:34:16 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ void	error_read(int fd, char *buffer, char *getter)
 	if (buffer)
 		free(buffer);
 	if (getter)
+	{
 		free(getter);
+		getter = NULL;
+	}
 	ft_putstr_fd("Error\nAn error occured while reading file! ❌\n", 2);
 	exit(1);
 }
