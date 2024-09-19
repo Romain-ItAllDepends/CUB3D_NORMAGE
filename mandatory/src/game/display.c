@@ -6,11 +6,27 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 09:10:35 by rgobet            #+#    #+#             */
-/*   Updated: 2024/09/19 09:48:16 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/19 12:45:28 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
+
+static int32_t	get_color(int32_t pixel)
+{
+	int32_t	r;
+	int32_t	g;
+	int32_t	b;
+	int32_t	a;
+	int32_t	color;
+
+	r = ((pixel >> 24) & 0xFF);
+	g = ((pixel >> 16) & 0xFF);
+	b = ((pixel >> 8) & 0xFF);
+	a = (pixel & 0xFF);
+	color = ((a << 24) | (b << 16) | (g << 8) | r);
+	return (color);
+}
 
 void raycast(t_vars *vars, int x)
 {
@@ -99,11 +115,16 @@ void raycast(t_vars *vars, int x)
 	{
 		drawEnd = HEIGHT - 1;
 	}
+
+
 	for (int y = 0; y < drawStart; y++)
     {
         mlx_put_pixel(vars->images->screen, x, y, (vars->ceiling[0] << 16) | (vars->ceiling[1] << 8) | vars->ceiling[2]);
     }
-
+	for (int y = drawEnd; y < HEIGHT; y++)
+    {
+        mlx_put_pixel(vars->images->screen, x, y, (vars->floor[0] << 16) | (vars->floor[1] << 8) | vars->floor[2]);
+    }
 
 
 
@@ -122,50 +143,19 @@ void raycast(t_vars *vars, int x)
     step = 1.0 * TEXHEIGHT / lineHeight;
     texPos = (drawStart - HEIGHT / 2 + lineHeight / 2) * step;
 
-	int32_t	r;
-	int32_t	g;
-	int32_t	b;
-	int32_t	a;
-
     for (int y = drawStart; y < drawEnd; y++)
     {
         texY = (int)texPos & (TEXHEIGHT - 1);
         texPos += step;
 		color = 4294967295;
         if (side == 0 && vars->raycast->ray_dirx < 0)
-		{
-			r = ((((int32_t *)vars->images->west->pixels)[TEXWIDTH * texY + texX] >> 24) & 0xFF);
-			g = ((((int32_t *)vars->images->west->pixels)[TEXWIDTH * texY + texX] >> 16) & 0xFF);
-			b = ((((int32_t *)vars->images->west->pixels)[TEXWIDTH * texY + texX] >> 8) & 0xFF);
-			a = (((int32_t *)vars->images->west->pixels)[TEXWIDTH * texY + texX] & 0xFF);
-			color = ((a << 24) | (b << 16) | (g << 8) | r);
-		}
+			color = get_color(((int32_t *)vars->images->west->pixels)[TEXWIDTH * texY + texX]);
         else if (side == 0 && vars->raycast->ray_dirx >= 0)
-		{
-			r = ((((int32_t *)vars->images->east->pixels)[TEXWIDTH * texY + texX] >> 24) & 0xFF);
-			g = ((((int32_t *)vars->images->east->pixels)[TEXWIDTH * texY + texX] >> 16) & 0xFF);
-			b = ((((int32_t *)vars->images->east->pixels)[TEXWIDTH * texY + texX] >> 8) & 0xFF);
-			a = (((int32_t *)vars->images->east->pixels)[TEXWIDTH * texY + texX] & 0xFF);
-            color = ((a << 24) | (b << 16) | (g << 8) | r);
-		}
+			color = get_color(((int32_t *)vars->images->east->pixels)[TEXWIDTH * texY + texX]);
         else if (side == 1 && vars->raycast->ray_diry < 0)
-		{
-			r = ((((int32_t *)vars->images->north->pixels)[TEXWIDTH * texY + texX] >> 24) & 0xFF);
-			g = ((((int32_t *)vars->images->north->pixels)[TEXWIDTH * texY + texX] >> 16) & 0xFF);
-			b = ((((int32_t *)vars->images->north->pixels)[TEXWIDTH * texY + texX] >> 8) & 0xFF);
-			a = (((int32_t *)vars->images->north->pixels)[TEXWIDTH * texY + texX] & 0xFF);
-            color = ((a << 24) | (b << 16) | (g << 8) | r);
-
-		}
+			color = get_color(((int32_t *)vars->images->north->pixels)[TEXWIDTH * texY + texX]);
 		else
-		{
-			r = ((((uint32_t *)vars->images->south->pixels)[TEXWIDTH * texY + texX] >> 24) & 0xFF);
-			g = ((((uint32_t *)vars->images->south->pixels)[TEXWIDTH * texY + texX] >> 16) & 0xFF);
-			b = ((((uint32_t *)vars->images->south->pixels)[TEXWIDTH * texY + texX] >> 8) & 0xFF);
-			a = (((uint32_t *)vars->images->south->pixels)[TEXWIDTH * texY + texX] & 0xFF);
-            color = ((a << 24) | (b << 16) | (g << 8) | r);
-
-		}
+			color = get_color(((int32_t *)vars->images->south->pixels)[TEXWIDTH * texY + texX]);
     	mlx_put_pixel(vars->images->screen, x, y, color);
     }
 }
