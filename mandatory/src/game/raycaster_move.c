@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 05:02:12 by vgodart           #+#    #+#             */
-/*   Updated: 2024/09/19 09:45:38 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/19 10:10:25 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	forward_and_back(t_vars *vars, double moveSpeed)
 				* moveSpeed)][(int)vars->raycast->posy] != '1'
 			&& vars->map[(int)(vars->raycast->posx + vars->raycast->dirx
 				* moveSpeed)][(int)vars->raycast->posy] != ' '))
-			forward_and_back_utils_w(vars, moveSpeed);
+		forward_and_back_utils_w(vars, moveSpeed);
 	if (mlx_is_key_down(vars->window, MLX_KEY_S)
 		&& (vars->map[(int)(vars->raycast->posx - vars->raycast->dirx
 				* moveSpeed)][(int)vars->raycast->posy] != '1'
