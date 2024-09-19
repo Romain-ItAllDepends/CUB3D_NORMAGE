@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 09:04:19 by rgobet            #+#    #+#             */
-/*   Updated: 2024/09/16 10:56:59 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/19 08:47:16 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	get_parameters(t_vars *vars, char **file)
 		|| color != 2)
 	{
 		ft_putstr_fd("Error\nAn error occured while getting textures! ❌\n", 2);
-		ft_free_vars(vars, -1);
+		ft_free_vars(vars);
 	}
 }
 

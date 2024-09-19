@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 02:54:38 by vgodart           #+#    #+#             */
-/*   Updated: 2024/09/19 08:45:10 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/19 09:55:09 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	initialize_window(t_vars *vars)
 	if (!vars->window)
 	{
 		ft_putstr_fd("Error\nAn error occurred while opening the window!\n", 2);
-		ft_free_vars(vars, 0);
+		ft_free_vars(vars);
 		exit(1);
 	}
 }
@@ -51,7 +51,7 @@ void	resize_images(t_vars *vars)
 
 void	setup_textures(t_vars *vars)
 {
-	vars->textures->north = mlx_load_png("./textures/north.png");
+	vars->textures->north = mlx_load_png(vars->north);
 	if (!vars->textures->north)
 		texture_error(vars);
 	vars->textures->south = mlx_load_png(vars->south);
@@ -70,4 +70,5 @@ void	setup_textures(t_vars *vars)
 			vars->textures->crosshair);
 	if (!vars->images->crosshair)
 		texture_error(vars);
+	resize_images(vars);
 }

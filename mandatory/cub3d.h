@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 09:41:36 by rgobet            #+#    #+#             */
-/*   Updated: 2024/09/19 08:45:29 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/19 09:52:22 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,24 +120,19 @@ int						check_closed_map(char **map);
 int						check_player_char(char **map);
 
 /*
- * Raycaster
+ * Game
  */
 
-void					right_and_left(t_vars *vars, double moveSpeed);
-void					forward_and_back(t_vars *vars, double moveSpeed);
-void					rotate_camera(t_vars *vars, double rotSpeed);
-
-/*
- * Raycaster_Move_Utils
- */
-
-void					forward_and_back_utils_e(t_vars *vars,
-							double moveSpeed);
+void 					paint_on_screen(t_vars *vars);
+void 					raycast(t_vars *vars, int x);
 void					forward_and_back_utils_w(t_vars *vars,
 							double moveSpeed);
 void					forward_and_back_utils_s(t_vars *vars,
 							double moveSpeed);
 void					right_and_left_utils(t_vars *vars, double moveSpeed);
+void					forward_and_back(t_vars *vars, double moveSpeed);
+void					right_and_left(t_vars *vars, double moveSpeed);
+void					rotate_camera(t_vars *vars, double rotSpeed);
 
 /*
  * Utils
@@ -163,7 +158,6 @@ void					get_borders(char *tab, char *line, int i);
 int						verif_map_split(char *s);
 int						is_parameter(char *s);
 void					setup_textures(t_vars *vars);
-void					setup_hooks(t_vars *vars);
 
 /*
  * Errors
@@ -188,7 +182,7 @@ void					screen_error(t_vars *vars);
  Free
 */
 
-void					ft_free_vars(t_vars *vars, int error);
+void					ft_free_vars(t_vars *vars);
 void					ft_free(char **str);
 
 #endif

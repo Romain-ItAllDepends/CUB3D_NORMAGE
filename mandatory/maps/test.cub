@@ -1,10 +1,10 @@
                
-SO ./textures/all.png
-                  WE                           ./textures/all.png
+SO ./textures/south.png
+                  WE                           ./textures/west.png
 
-  NO ./textures/all.png
+  NO ./textures/north.png
 
-EA                              ./textures/all.png
+EA                              ./textures/east.png
 F 220,100,0
                                            C     						250,30,0
 

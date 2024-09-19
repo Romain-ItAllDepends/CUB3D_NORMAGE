@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 08:55:47 by rgobet            #+#    #+#             */
-/*   Updated: 2024/09/16 09:13:58 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/19 08:48:40 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,19 +68,22 @@ void	raycast_vars_init(t_vars *vars)
 {
 	vars->textures = ft_calloc(1, sizeof(t_textures));
 	if (!vars->textures)
-		ft_free_vars(vars, -1);
+		ft_free_vars(vars);
 	vars->images = ft_calloc(1, sizeof(t_images));
 	if (!vars->images)
 	{
 		free(vars->textures);
-		ft_free_vars(vars, -1);
+		vars->textures = NULL;
+		ft_free_vars(vars);
 	}
 	vars->raycast = ft_calloc(1, sizeof(t_raycast));
 	if (!vars->raycast)
 	{
 		free(vars->images);
 		free(vars->textures);
-		ft_free_vars(vars, -1);
+		vars->images = NULL;
+		vars->textures = NULL;
+		ft_free_vars(vars);
 	}
 	vars->raycast->planex = 0;
 	vars->raycast->planey = 2 * atan(0.9 / 1.0);

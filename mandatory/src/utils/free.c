@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 12:06:40 by rgobet            #+#    #+#             */
-/*   Updated: 2024/09/19 08:43:37 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/19 10:02:44 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,36 +30,35 @@ void	ft_free(char **str)
 static void	free_images(t_vars *vars)
 {
 	if (vars && vars->images && vars->images->screen)
-		free(vars->images->screen);
+		mlx_delete_image(vars->window, vars->images->screen);
 	if (vars && vars->images && vars->images->crosshair)
-		free(vars->images->crosshair);
+		mlx_delete_image(vars->window, vars->images->crosshair);
 	if (vars && vars->images && vars->images->north)
-		free(vars->images->north);
+		mlx_delete_image(vars->window, vars->images->north);
 	if (vars && vars->images && vars->images->south)
-		free(vars->images->south);
+		mlx_delete_image(vars->window, vars->images->south);
 	if (vars && vars->images && vars->images->east)
-		free(vars->images->east);
+		mlx_delete_image(vars->window, vars->images->east);
 	if (vars && vars->images && vars->images->west)
-		free(vars->images->west);
+		mlx_delete_image(vars->window, vars->images->west);
 }
 
 static void	free_textures(t_vars *vars)
 {
 	if (vars && vars->textures && vars->textures->crosshair)
-		free(vars->textures->crosshair);
+		mlx_delete_texture(vars->textures->crosshair);
 	if (vars && vars->textures && vars->textures->north)
-		free(vars->textures->north);
+		mlx_delete_texture(vars->textures->north);
 	if (vars && vars->textures && vars->textures->south)
-		free(vars->textures->south);
+		mlx_delete_texture(vars->textures->south);
 	if (vars && vars->textures && vars->textures->east)
-		free(vars->textures->east);
+		mlx_delete_texture(vars->textures->east);
 	if (vars && vars->textures && vars->textures->west)
-		free(vars->textures->west);
+		mlx_delete_texture(vars->textures->west);
 }
 
-void	ft_free_vars(t_vars *vars, int error)
+void	ft_free_vars(t_vars *vars)
 {
-	(void)error;
 	if (vars && vars->map)
 		ft_free(vars->map);
 	if (vars && vars->north)
@@ -78,6 +77,11 @@ void	ft_free_vars(t_vars *vars, int error)
 		free(vars->textures);
 	if (vars && vars->raycast)
 		free(vars->raycast);
+	if (vars && vars->window)
+	{
+		mlx_close_window(vars->window);
+		mlx_terminate(vars->window);
+	}
 	free(vars);
-	vars = NULL;
+	exit(0);
 }
