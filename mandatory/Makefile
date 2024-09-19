@@ -7,7 +7,6 @@ MY_SOURCES= src/core/main.c \
 			src/core/raycast_vars_init.c \
 			src/core/raycaster_move.c \
 			src/core/raycaster_move_utils.c \
-			src/mini_map/mini_map.c \
 			src/parsing/parse_file.c \
 			src/parsing/checker.c \
 			src/parsing/map_check.c \

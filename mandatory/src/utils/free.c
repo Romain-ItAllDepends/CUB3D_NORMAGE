@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 12:06:40 by rgobet            #+#    #+#             */
-/*   Updated: 2024/09/19 08:41:27 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/19 08:43:37 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ static void	free_images(t_vars *vars)
 		free(vars->images->screen);
 	if (vars && vars->images && vars->images->crosshair)
 		free(vars->images->crosshair);
-	if (vars && vars->images && vars->images->mini_map)
-		free(vars->images->mini_map);
 	if (vars && vars->images && vars->images->north)
 		free(vars->images->north);
 	if (vars && vars->images && vars->images->south)
@@ -73,7 +71,7 @@ void	ft_free_vars(t_vars *vars, int error)
 	if (vars && vars->west)
 		free(vars->west);
 	free_images(vars);
-	free_texture(vars);
+	free_textures(vars);
 	if (vars && vars->images)
 		free(vars->images);
 	if (vars && vars->textures)

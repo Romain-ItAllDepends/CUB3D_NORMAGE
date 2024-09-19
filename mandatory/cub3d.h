@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 09:41:36 by rgobet            #+#    #+#             */
-/*   Updated: 2024/09/18 12:16:12 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/19 08:45:29 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ typedef struct images
 	mlx_image_t			*east;
 	mlx_image_t			*west;
 	mlx_image_t			*crosshair;
-	mlx_image_t			*mini_map;
 	mlx_image_t			*screen;
 }						t_images;
 
@@ -104,18 +103,11 @@ void					init(t_vars *vars, char *str);
 void					raycast_vars_init(t_vars *vars);
 void					initialize_vars(t_vars **vars, char *file);
 void					initialize_window(t_vars *vars);
-void					initialize_mini_map(t_vars *vars);
 void					north_south_textures(char *str, t_vars *vars, char dir);
 void					get_parameters(t_vars *vars, char **file);
 void					get_player_pos(t_vars *vars);
 void					get_colors(char *str, t_vars *vars);
 void					get_textures(char *str, t_vars *vars);
-
-/*
- * Mini map
- */
-
-void					build_mini_map(t_vars *vars);
 
 /*
  * Parsing
