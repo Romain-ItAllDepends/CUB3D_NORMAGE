@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 09:41:36 by rgobet            #+#    #+#             */
-/*   Updated: 2024/09/19 09:52:22 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/20 12:48:33 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,20 @@ typedef struct raycast
 	double				cameray;
 	double				posx;
 	double				posy;
+	int					hit;
+    int					mapX;
+    int					mapY;
+    int					side;
+    int					drawStart;
+    int					drawEnd;
+    int					texX;
+    int					texY;
+    double				perpWallDist;
+    double				wallX;
+    double				step;
+    double				texPos;
+    int					lineHeight;
+    int32_t				color;
 	t_facing			facing;
 }						t_raycast;
 
@@ -125,6 +139,11 @@ int						check_player_char(char **map);
 
 void 					paint_on_screen(t_vars *vars);
 void 					raycast(t_vars *vars, int x);
+int32_t					get_color(int32_t pixel);
+void					select_textures(t_vars *vars);
+void					put_pixels(t_vars *vars, int x);
+void					texture_coord(t_vars *vars);
+void					wall_start_end(t_vars *vars);
 void					forward_and_back_utils_w(t_vars *vars,
 							double moveSpeed);
 void					forward_and_back_utils_s(t_vars *vars,

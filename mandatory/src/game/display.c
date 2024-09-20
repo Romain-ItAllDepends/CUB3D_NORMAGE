@@ -1,172 +1,108 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   display.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 09:10:35 by rgobet            #+#    #+#             */
-/*   Updated: 2024/09/19 12:45:28 by rgobet           ###   ########.fr       */
-/*                                                                            */
+/*																			*/
+/*														:::	  ::::::::   */
+/*   display.c										  :+:	  :+:	:+:   */
+/*													+:+ +:+		 +:+	 */
+/*   By: rgobet <rgobet@student.42angouleme.fr>	 +#+  +:+	   +#+		*/
+/*												+#+#+#+#+#+   +#+		   */
+/*   Created: 2024/09/19 09:10:35 by rgobet			#+#	#+#			 */
+/*   Updated: 2024/09/20 12:31:20 by rgobet		   ###   ########.fr	   */
+/*																			*/
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
-static int32_t	get_color(int32_t pixel)
+static void	dda(t_vars *vars)
 {
-	int32_t	r;
-	int32_t	g;
-	int32_t	b;
-	int32_t	a;
-	int32_t	color;
-
-	r = ((pixel >> 24) & 0xFF);
-	g = ((pixel >> 16) & 0xFF);
-	b = ((pixel >> 8) & 0xFF);
-	a = (pixel & 0xFF);
-	color = ((a << 24) | (b << 16) | (g << 8) | r);
-	return (color);
-}
-
-void raycast(t_vars *vars, int x)
-{
-    int hit = 0;
-    int mapX = (int)vars->raycast->posx;
-    int mapY = (int)vars->raycast->posy;
-    int side;
-    int drawStart;
-    int drawEnd;
-    int texX;
-    int texY;
-    double perpWallDist;
-    double wallX;
-    double step;
-    double texPos;
-    int lineHeight;
-    uint32_t color;
-
-
-    // Calcul de la position de la caméra
-    vars->raycast->camerax = 2 * x / (double)WIDTH - 1;
-    vars->raycast->ray_dirx = vars->raycast->dirx + vars->raycast->planex * vars->raycast->camerax;
-    vars->raycast->ray_diry = vars->raycast->diry + vars->raycast->planey * vars->raycast->camerax;
-
-    // Calcul des distances initiales
-    vars->raycast->delta_distx = (vars->raycast->ray_dirx == 0) ? 1e30 : fabs(1 / vars->raycast->ray_dirx);
-    vars->raycast->delta_disty = (vars->raycast->ray_diry == 0) ? 1e30 : fabs(1 / vars->raycast->ray_diry);
-
-    if (vars->raycast->ray_dirx < 0)
-    {
-        vars->raycast->stepx = -1;
-        vars->raycast->side_distx = (vars->raycast->posx - mapX) * vars->raycast->delta_distx;
-    }
-    else
-    {
-        vars->raycast->stepx = 1;
-        vars->raycast->side_distx = (mapX + 1.0 - vars->raycast->posx) * vars->raycast->delta_distx;
-    }
-    if (vars->raycast->ray_diry < 0)
-    {
-        vars->raycast->stepy = -1;
-        vars->raycast->side_disty = (vars->raycast->posy - mapY) * vars->raycast->delta_disty;
-    }
-    else
-    {
-        vars->raycast->stepy = 1;
-        vars->raycast->side_disty = (mapY + 1.0 - vars->raycast->posy) * vars->raycast->delta_disty;
-    }
-
-
-
-    // Exécution du DDA
-    while (hit == 0)
-    {
-        if (vars->raycast->side_distx < vars->raycast->side_disty)
-        {
-            vars->raycast->side_distx += vars->raycast->delta_distx;
-            mapX += vars->raycast->stepx;
-            side = 0;
-        }
-        else
-        {
-            vars->raycast->side_disty += vars->raycast->delta_disty;
-            mapY += vars->raycast->stepy;
-            side = 1;
-        }
-        if (vars->map[mapX][mapY] == '1')
-            hit = 1;
-    }
-
-    // Calcul de la distance projetée
-    if (side == 0)
-        perpWallDist = (vars->raycast->side_distx - vars->raycast->delta_distx);
-    else
-        perpWallDist = (vars->raycast->side_disty - vars->raycast->delta_disty);
-    lineHeight = (int)(TEXHEIGHT / perpWallDist);
-
-
-
-    // Calcul des limites de dessin en tenant compte de la position verticale du joueur
-    drawStart = -lineHeight / 2 + HEIGHT / 2;
-    if (drawStart < 0)
-        drawStart = 0;
-    drawEnd = lineHeight / 2 + HEIGHT / 2;
-    if (drawEnd >= HEIGHT)
+	while (vars->raycast->hit == 0)
 	{
-		drawEnd = HEIGHT - 1;
-	}
-
-
-	for (int y = 0; y < drawStart; y++)
-    {
-        mlx_put_pixel(vars->images->screen, x, y, (vars->ceiling[0] << 16) | (vars->ceiling[1] << 8) | vars->ceiling[2]);
-    }
-	for (int y = drawEnd; y < HEIGHT; y++)
-    {
-        mlx_put_pixel(vars->images->screen, x, y, (vars->floor[0] << 16) | (vars->floor[1] << 8) | vars->floor[2]);
-    }
-
-
-
-
-    // Calcul des coordonnées de texture
-    if (side == 0)
-        wallX = vars->raycast->posy + perpWallDist * vars->raycast->ray_diry;
-    else
-        wallX = vars->raycast->posx + perpWallDist * vars->raycast->ray_dirx;
-    wallX -= floor((wallX));
-    texX = (int)(wallX * (double)TEXWIDTH);
-    if (side == 0 && vars->raycast->ray_dirx > 0)
-        texX = TEXWIDTH - texX - 1;
-    if (side == 1 && vars->raycast->ray_diry < 0)
-        texX = TEXWIDTH - texX - 1;
-    step = 1.0 * TEXHEIGHT / lineHeight;
-    texPos = (drawStart - HEIGHT / 2 + lineHeight / 2) * step;
-
-    for (int y = drawStart; y < drawEnd; y++)
-    {
-        texY = (int)texPos & (TEXHEIGHT - 1);
-        texPos += step;
-		color = 4294967295;
-        if (side == 0 && vars->raycast->ray_dirx < 0)
-			color = get_color(((int32_t *)vars->images->west->pixels)[TEXWIDTH * texY + texX]);
-        else if (side == 0 && vars->raycast->ray_dirx >= 0)
-			color = get_color(((int32_t *)vars->images->east->pixels)[TEXWIDTH * texY + texX]);
-        else if (side == 1 && vars->raycast->ray_diry < 0)
-			color = get_color(((int32_t *)vars->images->north->pixels)[TEXWIDTH * texY + texX]);
+		if (vars->raycast->side_distx < vars->raycast->side_disty)
+		{
+			vars->raycast->side_distx += vars->raycast->delta_distx;
+			vars->raycast->mapX += vars->raycast->stepx;
+			vars->raycast->side = 0;
+		}
 		else
-			color = get_color(((int32_t *)vars->images->south->pixels)[TEXWIDTH * texY + texX]);
-    	mlx_put_pixel(vars->images->screen, x, y, color);
-    }
+		{
+			vars->raycast->side_disty += vars->raycast->delta_disty;
+			vars->raycast->mapY += vars->raycast->stepy;
+			vars->raycast->side = 1;
+		}
+		if (vars->map[vars->raycast->mapX][vars->raycast->mapY] == '1')
+			vars->raycast->hit = 1;
+	}
 }
 
-void paint_on_screen(t_vars *vars)
+static void	cam_pos(t_vars *vars, int x)
 {
-	mlx_delete_image(vars->window, vars->images->screen);
-	vars->images->screen = mlx_new_image(vars->window, WIDTH, HEIGHT);
-	for (int x = 0; x < WIDTH; x++)
+	vars->raycast->camerax = 2 * x / (double)WIDTH - 1;
+	vars->raycast->ray_dirx = vars->raycast->dirx + \
+	vars->raycast->planex * vars->raycast->camerax;
+	vars->raycast->ray_diry = vars->raycast->diry + \
+	vars->raycast->planey * vars->raycast->camerax;
+}
+
+static void	delta_dist(t_vars *vars)
+{
+	if (vars->raycast->ray_dirx == 0)
+		vars->raycast->delta_distx = MAX;
+	else
+		vars->raycast->delta_distx = fabs(1 / vars->raycast->ray_dirx);
+	if (vars->raycast->ray_diry == 0)
+		vars->raycast->delta_disty = MAX;
+	else
+		vars->raycast->delta_disty = fabs(1 / vars->raycast->ray_diry);
+}
+
+static void	side_dist(t_vars *vars)
+{
+	if (vars->raycast->ray_dirx < 0)
 	{
-		raycast(vars, x);
+		vars->raycast->stepx = -1;
+		vars->raycast->side_distx = (vars->raycast->posx - vars->raycast->mapX) \
+		* vars->raycast->delta_distx;
 	}
-	mlx_image_to_window(vars->window, vars->images->screen, 0, 0);
+	else
+	{
+		vars->raycast->stepx = 1;
+		vars->raycast->side_distx = (vars->raycast->mapX + 1.0 - \
+		vars->raycast->posx) * vars->raycast->delta_distx;
+	}
+	if (vars->raycast->ray_diry < 0)
+	{
+		vars->raycast->stepy = -1;
+		vars->raycast->side_disty = (vars->raycast->posy - \
+		vars->raycast->mapY) * vars->raycast->delta_disty;
+	}
+	else
+	{
+		vars->raycast->stepy = 1;
+		vars->raycast->side_disty = (vars->raycast->mapY + 1.0 - \
+		vars->raycast->posy) * vars->raycast->delta_disty;
+	}
+}
+
+void	raycast(t_vars *vars, int x)
+{
+	vars->raycast->hit = 0;
+	vars->raycast->mapX = (int)vars->raycast->posx;
+	vars->raycast->mapY = (int)vars->raycast->posy;
+	cam_pos(vars, x);
+	delta_dist(vars);
+	side_dist(vars);
+	dda(vars);
+	if (vars->raycast->side == 0)
+	{
+		vars->raycast->perpWallDist = (vars->raycast->side_distx - \
+		vars->raycast->delta_distx);
+	}
+	else
+	{
+		vars->raycast->perpWallDist = (vars->raycast->side_disty - \
+		vars->raycast->delta_disty);
+	}
+	vars->raycast->lineHeight = (int)(TEXHEIGHT / vars->raycast->perpWallDist);
+	wall_start_end(vars);
+	texture_coord(vars);
+	put_pixels(vars, x);
 }

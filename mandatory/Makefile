@@ -8,6 +8,8 @@ MY_SOURCES= src/core/main.c \
 			src/game/raycaster_move.c \
 			src/game/raycaster_move_utils.c \
 			src/game/display.c \
+			src/game/display_utils.c \
+			src/game/paint_screen.c \
 			src/parsing/parse_file.c \
 			src/parsing/checker.c \
 			src/parsing/map_check.c \
