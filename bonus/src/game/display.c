@@ -1,13 +1,13 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   display.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/15 08:55:47 by rgobet            #+#    #+#             */
-/*   Updated: 2024/09/19 08:48:40 by rgobet           ###   ########.fr       */
-/*                                                                            */
+/*																			*/
+/*														:::	  ::::::::   */
+/*   display.c										  :+:	  :+:	:+:   */
+/*													+:+ +:+		 +:+	 */
+/*   By: rgobet <rgobet@student.42angouleme.fr>	 +#+  +:+	   +#+		*/
+/*												+#+#+#+#+#+   +#+		   */
+/*   Created: 2024/09/19 09:10:35 by rgobet			#+#	#+#			 */
+/*   Updated: 2024/09/20 12:31:20 by rgobet		   ###   ########.fr	   */
+/*																			*/
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
@@ -101,8 +101,7 @@ void	raycast(t_vars *vars, int x)
 		vars->raycast->perp_wall_dist = (vars->raycast->side_disty - \
 		vars->raycast->delta_disty);
 	}
-	vars->raycast->line_height
-		= (int)(TEXHEIGHT / vars->raycast->perp_wall_dist);
+	vars->raycast->line_height = (int)(TEXHEIGHT / vars->raycast->perp_wall_dist);
 	wall_start_end(vars);
 	texture_coord(vars);
 	put_pixels(vars, x);

@@ -17,30 +17,45 @@ static void	rc_utils(t_vars *vars, double rotSpeed, double old_dirx,
 
 void	forward_and_back(t_vars *vars, double moveSpeed)
 {
-	if (mlx_is_key_down(vars->window, MLX_KEY_W))
-	{
-		vars->raycast->posx += vars->raycast->dirx * moveSpeed;
-		vars->raycast->posy += vars->raycast->diry * moveSpeed;
-	}
-	if (mlx_is_key_down(vars->window, MLX_KEY_S))
-	{
-		vars->raycast->posx -= vars->raycast->dirx * moveSpeed;
-		vars->raycast->posy -= vars->raycast->diry * moveSpeed;
-	}
+	if (mlx_is_key_down(vars->window, MLX_KEY_W)
+		&& (vars->map[(int)(vars->raycast->posx + vars->raycast->dirx
+				* moveSpeed)][(int)vars->raycast->posy] != '1'
+			&& vars->map[(int)(vars->raycast->posx + vars->raycast->dirx
+				* moveSpeed)][(int)vars->raycast->posy] != ' '))
+		forward_and_back_utils_w(vars, moveSpeed);
+	if (mlx_is_key_down(vars->window, MLX_KEY_S)
+		&& (vars->map[(int)(vars->raycast->posx - vars->raycast->dirx
+				* moveSpeed)][(int)vars->raycast->posy] != '1'
+			&& vars->map[(int)(vars->raycast->posx - vars->raycast->dirx
+				* moveSpeed)][(int)vars->raycast->posy] != ' '))
+		forward_and_back_utils_s(vars, moveSpeed);
 }
 
 void	right_and_left(t_vars *vars, double moveSpeed)
 {
-	if (mlx_is_key_down(vars->window, MLX_KEY_A))
+	if (mlx_is_key_down(vars->window, MLX_KEY_A)
+		&& (vars->map[(int)vars->raycast->posx][(int)(vars->raycast->posy
+			- vars->raycast->planey * moveSpeed)] != '1'
+			&& vars->map[(int)vars->raycast->posx][(int)(vars->raycast->posy
+				- vars->raycast->planey * moveSpeed)] != ' '))
 	{
-		vars->raycast->posx -= vars->raycast->planex * moveSpeed;
-		vars->raycast->posy -= vars->raycast->planey * moveSpeed;
+		if (vars->map[(int)(vars->raycast->posx - vars->raycast->planex
+				* MOVE_SPEED)][(int)vars->raycast->posy] == '0'
+			|| vars->map[(int)(vars->raycast->posx - vars->raycast->planex
+				* MOVE_SPEED)][(int)vars->raycast->posy] == 'N')
+			vars->raycast->posx -= vars->raycast->planex * moveSpeed;
+		if (vars->map[(int)(vars->raycast->posx)][(int)(vars->raycast->posy
+				- vars->raycast->planey * MOVE_SPEED)] == '0'
+			|| vars->map[(int)(vars->raycast->posx)][(int)(vars->raycast->posy
+				- vars->raycast->planey * MOVE_SPEED)] == 'N')
+			vars->raycast->posy -= vars->raycast->planey * moveSpeed;
 	}
-	if (mlx_is_key_down(vars->window, MLX_KEY_D))
-	{
-		vars->raycast->posx += vars->raycast->planex * moveSpeed;
-		vars->raycast->posy += vars->raycast->planey * moveSpeed;
-	}
+	if (mlx_is_key_down(vars->window, MLX_KEY_D)
+		&& (vars->map[(int)(vars->raycast->posx + vars->raycast->planex
+				* moveSpeed)][(int)vars->raycast->posy] != '1'
+			&& vars->map[(int)(vars->raycast->posx + vars->raycast->planex
+				* moveSpeed)][(int)vars->raycast->posy] != ' '))
+		right_and_left_utils(vars, moveSpeed);
 }
 
 void	rotate_camera(t_vars *vars, double rotSpeed)

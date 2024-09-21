@@ -75,19 +75,19 @@ typedef struct raycast
 	double				posx;
 	double				posy;
 	int					hit;
-	int					mapx;
-	int					mapy;
-	int					side;
-	int					draw_start;
-	int					draw_end;
-	int					texx;
-	int					texy;
-	double				perp_wall_dist;
-	double				wallx;
-	double				step;
-	double				tex_pos;
-	int					line_height;
-	int32_t				color;
+    int					mapx;
+    int					mapy;
+    int					side;
+    int					draw_start;
+    int					draw_end;
+    int					texx;
+    int					texy;
+    double				perp_wall_dist;
+    double				wallx;
+    double				step;
+    double				tex_pos;
+    int					line_height;
+    int32_t				color;
 	t_facing			facing;
 }						t_raycast;
 
@@ -137,8 +137,8 @@ int						check_player_char(char **map);
  * Game
  */
 
-void					paint_on_screen(t_vars *vars);
-void					raycast(t_vars *vars, int x);
+void 					paint_on_screen(t_vars *vars);
+void 					raycast(t_vars *vars, int x);
 int32_t					get_color(int32_t pixel);
 void					select_textures(t_vars *vars);
 void					put_pixels(t_vars *vars, int x);
