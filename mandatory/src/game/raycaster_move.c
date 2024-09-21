@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 05:02:12 by vgodart           #+#    #+#             */
-/*   Updated: 2024/09/19 10:10:25 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/21 09:10:16 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,20 @@ static void	rc_utils(t_vars *vars, double rotSpeed, double old_dirx,
 
 void	forward_and_back(t_vars *vars, double moveSpeed)
 {
-	if (mlx_is_key_down(vars->window, MLX_KEY_W))
+	if (mlx_is_key_down(vars->window, MLX_KEY_W)
+		&& (vars->map[(int)(vars->raycast->posx + vars->raycast->dirx * \
+		moveSpeed)][(int)vars->raycast->posy] != '1'
+			&& vars->map[(int)(vars->raycast->posx + vars->raycast->dirx * \
+			moveSpeed)][(int)vars->raycast->posy] != ' '))
 	{
 		vars->raycast->posx += vars->raycast->dirx * moveSpeed;
 		vars->raycast->posy += vars->raycast->diry * moveSpeed;
 	}
-	if (mlx_is_key_down(vars->window, MLX_KEY_S))
+	if (mlx_is_key_down(vars->window, MLX_KEY_S)
+		&& (vars->map[(int)(vars->raycast->posx - vars->raycast->dirx * \
+		moveSpeed)][(int)vars->raycast->posy] != '1'
+			&& vars->map[(int)(vars->raycast->posx - vars->raycast->dirx * \
+			moveSpeed)][(int)vars->raycast->posy] != ' '))
 	{
 		vars->raycast->posx -= vars->raycast->dirx * moveSpeed;
 		vars->raycast->posy -= vars->raycast->diry * moveSpeed;
@@ -31,12 +39,20 @@ void	forward_and_back(t_vars *vars, double moveSpeed)
 
 void	right_and_left(t_vars *vars, double moveSpeed)
 {
-	if (mlx_is_key_down(vars->window, MLX_KEY_A))
+	if (mlx_is_key_down(vars->window, MLX_KEY_A)
+		&& (vars->map[(int)vars->raycast->posx][(int)(vars->raycast->posy - \
+		vars->raycast->planey * moveSpeed)] != '1'
+			&& vars->map[(int)vars->raycast->posx][(int)(vars->raycast->posy - \
+			vars->raycast->planey * moveSpeed)] != ' '))
 	{
 		vars->raycast->posx -= vars->raycast->planex * moveSpeed;
 		vars->raycast->posy -= vars->raycast->planey * moveSpeed;
 	}
-	if (mlx_is_key_down(vars->window, MLX_KEY_D))
+	if (mlx_is_key_down(vars->window, MLX_KEY_D)
+		&& (vars->map[(int)(vars->raycast->posx + vars->raycast->planex * \
+		moveSpeed)][(int)vars->raycast->posy] != '1'
+			&& vars->map[(int)(vars->raycast->posx + vars->raycast->planex * \
+			moveSpeed)][(int)vars->raycast->posy] != ' '))
 	{
 		vars->raycast->posx += vars->raycast->planex * moveSpeed;
 		vars->raycast->posy += vars->raycast->planey * moveSpeed;
@@ -61,7 +77,7 @@ void	rotate_camera(t_vars *vars, double rotSpeed)
 		vars->raycast->planey = old_planex * sin(-rotSpeed)
 			+ vars->raycast->planey * cos(-rotSpeed);
 	}
-	if (mlx_is_key_down(vars->window, MLX_KEY_LEFT))
+	else if (mlx_is_key_down(vars->window, MLX_KEY_LEFT))
 		rc_utils(vars, rotSpeed, old_dirx, old_planex);
 }
 
