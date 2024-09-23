@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 08:55:47 by rgobet            #+#    #+#             */
-/*   Updated: 2024/09/19 08:48:40 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/23 11:07:48 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,8 @@ void	raycast_vars_init(t_vars *vars)
 	}
 	vars->raycast->planex = 0;
 	vars->raycast->planey = 2 * atan(0.9 / 1.0);
+	vars->weapon_initial_x = 650;
+	vars->weapon_initial_y = 650;
+	vars->weapon_recoil_x = vars->weapon_initial_x - 10;
+	vars->weapon_recoil_y = vars->weapon_initial_y - 10;
 }

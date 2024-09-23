@@ -1,13 +1,13 @@
 /* ************************************************************************** */
-/*																			*/
-/*														:::	  ::::::::   */
-/*   display.c										  :+:	  :+:	:+:   */
-/*													+:+ +:+		 +:+	 */
-/*   By: rgobet <rgobet@student.42angouleme.fr>	 +#+  +:+	   +#+		*/
-/*												+#+#+#+#+#+   +#+		   */
-/*   Created: 2024/09/19 09:10:35 by rgobet			#+#	#+#			 */
-/*   Updated: 2024/09/20 12:31:20 by rgobet		   ###   ########.fr	   */
-/*																			*/
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   display.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/15 08:55:47 by rgobet            #+#    #+#             */
+/*   Updated: 2024/09/21 09:05:12 by rgobet           ###   ########.fr       */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
@@ -28,7 +28,10 @@ static void	dda(t_vars *vars)
 			vars->raycast->mapy += vars->raycast->stepy;
 			vars->raycast->side = 1;
 		}
-		if (vars->map[vars->raycast->mapx][vars->raycast->mapy] == '1')
+		if (!vars->map[vars->raycast->mapx]
+			|| !vars->map[vars->raycast->mapx][vars->raycast->mapy])
+			vars->raycast->hit = 1;
+		else if (vars->map[vars->raycast->mapx][vars->raycast->mapy] == '1')
 			vars->raycast->hit = 1;
 	}
 }
@@ -56,6 +59,7 @@ static void	delta_dist(t_vars *vars)
 
 static void	side_dist(t_vars *vars)
 {
+	vars->raycast->hit = 0;
 	if (vars->raycast->ray_dirx < 0)
 	{
 		vars->raycast->stepx = -1;
@@ -84,7 +88,6 @@ static void	side_dist(t_vars *vars)
 
 void	raycast(t_vars *vars, int x)
 {
-	vars->raycast->hit = 0;
 	vars->raycast->mapx = (int)vars->raycast->posx;
 	vars->raycast->mapy = (int)vars->raycast->posy;
 	cam_pos(vars, x);
@@ -101,7 +104,8 @@ void	raycast(t_vars *vars, int x)
 		vars->raycast->perp_wall_dist = (vars->raycast->side_disty - \
 		vars->raycast->delta_disty);
 	}
-	vars->raycast->line_height = (int)(TEXHEIGHT / vars->raycast->perp_wall_dist);
+	vars->raycast->line_height = \
+		(int)(TEXHEIGHT / vars->raycast->perp_wall_dist);
 	wall_start_end(vars);
 	texture_coord(vars);
 	put_pixels(vars, x);

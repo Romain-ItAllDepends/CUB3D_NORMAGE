@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 02:54:38 by vgodart           #+#    #+#             */
-/*   Updated: 2024/09/19 09:55:09 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/23 11:42:51 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,26 @@ void	resize_images(t_vars *vars)
 		screen_error(vars);
 }
 
+static void	weapons_setup(t_vars *vars)
+{
+	vars->textures->weapon1 = mlx_load_png("./textures/ak47.png");
+	if (!vars->textures->weapon1)
+		texture_error(vars);
+	vars->images->weapon1 = mlx_texture_to_image(vars->window, vars->textures->weapon1);
+	if (!vars->images->weapon1)
+		texture_error(vars);
+	vars->textures->weapon2 = mlx_load_png("./textures/cut.png");
+	if (!vars->textures->weapon2)
+		texture_error(vars);
+	vars->images->weapon2 = mlx_texture_to_image(vars->window, vars->textures->weapon2);
+	if (!vars->images->weapon2)
+		texture_error(vars);
+	if (mlx_resize_image(vars->images->weapon1, 700, 450) == 0)
+		resize_error(vars);
+	if (mlx_resize_image(vars->images->weapon2, 1150, 600) == 0)
+		resize_error(vars);
+}
+
 void	setup_textures(t_vars *vars)
 {
 	vars->textures->north = mlx_load_png(vars->north);
@@ -70,5 +90,6 @@ void	setup_textures(t_vars *vars)
 			vars->textures->crosshair);
 	if (!vars->images->crosshair)
 		texture_error(vars);
+	weapons_setup(vars);
 	resize_images(vars);
 }

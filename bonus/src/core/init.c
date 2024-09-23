@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 07:15:58 by rgobet            #+#    #+#             */
-/*   Updated: 2024/09/18 12:17:59 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/23 09:52:31 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,19 @@ void	get_textures(char *str, t_vars *vars)
 		i = tmp + 2;
 		i += skip_space(&str[i]);
 		vars->west = copy(&str[i]);
+	}
+}
+
+void	initialize_mini_map(t_vars *vars)
+{
+	vars->images->mini_map = mlx_new_image(vars->window, len_db_char(vars->map) * 100,
+			WIDTH);
+	if (!vars->images->mini_map)
+	{
+		ft_putstr_fd("Error\nAn error occurred while creating the mini map image!\n",
+			2);
+		ft_free_vars(vars);
+		exit(1);
 	}
 }
 

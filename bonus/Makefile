@@ -7,6 +7,8 @@ MY_SOURCES= src/core/main.c \
 			src/core/raycast_vars_init.c \
 			src/game/raycaster_move.c \
 			src/game/raycaster_move_utils.c \
+			src/game/mini_map.c \
+			src/game/weapon.c \
 			src/game/display.c \
 			src/game/display_utils.c \
 			src/game/paint_screen.c \

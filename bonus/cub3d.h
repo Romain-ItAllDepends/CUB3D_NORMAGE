@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 09:41:36 by rgobet            #+#    #+#             */
-/*   Updated: 2024/09/20 12:48:33 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/23 11:46:05 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ typedef struct textures
 	mlx_texture_t		*east;
 	mlx_texture_t		*west;
 	mlx_texture_t		*crosshair;
+	mlx_texture_t		*weapon1;
+	mlx_texture_t		*weapon2;
 }						t_textures;
 
 typedef struct images
@@ -52,6 +54,9 @@ typedef struct images
 	mlx_image_t			*south;
 	mlx_image_t			*east;
 	mlx_image_t			*west;
+	mlx_image_t			*weapon1;
+	mlx_image_t			*weapon2;
+	mlx_image_t			*mini_map;
 	mlx_image_t			*crosshair;
 	mlx_image_t			*screen;
 }						t_images;
@@ -75,24 +80,29 @@ typedef struct raycast
 	double				posx;
 	double				posy;
 	int					hit;
-    int					mapx;
-    int					mapy;
-    int					side;
-    int					draw_start;
-    int					draw_end;
-    int					texx;
-    int					texy;
-    double				perp_wall_dist;
-    double				wallx;
-    double				step;
-    double				tex_pos;
-    int					line_height;
-    int32_t				color;
+	int					mapx;
+	int					mapy;
+	int					side;
+	int					draw_start;
+	int					draw_end;
+	int					texx;
+	int					texy;
+	double				perp_wall_dist;
+	double				wallx;
+	double				step;
+	double				tex_pos;
+	int					line_height;
+	int32_t				color;
 	t_facing			facing;
 }						t_raycast;
 
 typedef struct vars
 {
+	int					is_shooting;
+	int					weapon_initial_x;
+	int					weapon_initial_y;
+	int					weapon_recoil_x;
+	int					weapon_recoil_y;
 	int					floor[3];
 	int					ceiling[3];
 	char				*north;
@@ -116,6 +126,7 @@ typedef struct vars
 void					init(t_vars *vars, char *str);
 void					raycast_vars_init(t_vars *vars);
 void					initialize_vars(t_vars **vars, char *file);
+void					initialize_mini_map(t_vars *vars);
 void					initialize_window(t_vars *vars);
 void					north_south_textures(char *str, t_vars *vars, char dir);
 void					get_parameters(t_vars *vars, char **file);
@@ -137,21 +148,24 @@ int						check_player_char(char **map);
  * Game
  */
 
-void 					paint_on_screen(t_vars *vars);
-void 					raycast(t_vars *vars, int x);
+void					paint_on_screen(t_vars *vars);
+void					raycast(t_vars *vars, int x);
 int32_t					get_color(int32_t pixel);
 void					select_textures(t_vars *vars);
+void					build_mini_map(t_vars *vars);
 void					put_pixels(t_vars *vars, int x);
 void					texture_coord(t_vars *vars);
 void					wall_start_end(t_vars *vars);
-void					forward_and_back_utils_w(t_vars *vars,
-							double moveSpeed);
-void					forward_and_back_utils_s(t_vars *vars,
-							double moveSpeed);
-void					right_and_left_utils(t_vars *vars, double moveSpeed);
+void					right_utils(t_vars *vars, double moveSpeed);
+void					left_utils(t_vars *vars, double moveSpeed);
+void					forward_and_back_utils_s(t_vars *vars, double moveSpeed);
+void					forward_and_back_utils_w(t_vars *vars, double moveSpeed);
 void					forward_and_back(t_vars *vars, double moveSpeed);
 void					right_and_left(t_vars *vars, double moveSpeed);
 void					rotate_camera(t_vars *vars, double rotSpeed);
+void					player_on_mini_map(t_vars *vars);
+void					build_mini_map(t_vars *vars);
+void					ft_shoot(t_vars *vars);
 
 /*
  * Utils

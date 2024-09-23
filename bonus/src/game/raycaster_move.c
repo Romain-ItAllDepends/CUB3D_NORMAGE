@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 05:02:12 by vgodart           #+#    #+#             */
-/*   Updated: 2024/09/19 10:10:25 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/23 09:42:48 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,24 +38,13 @@ void	right_and_left(t_vars *vars, double moveSpeed)
 			- vars->raycast->planey * moveSpeed)] != '1'
 			&& vars->map[(int)vars->raycast->posx][(int)(vars->raycast->posy
 				- vars->raycast->planey * moveSpeed)] != ' '))
-	{
-		if (vars->map[(int)(vars->raycast->posx - vars->raycast->planex
-				* MOVE_SPEED)][(int)vars->raycast->posy] == '0'
-			|| vars->map[(int)(vars->raycast->posx - vars->raycast->planex
-				* MOVE_SPEED)][(int)vars->raycast->posy] == 'N')
-			vars->raycast->posx -= vars->raycast->planex * moveSpeed;
-		if (vars->map[(int)(vars->raycast->posx)][(int)(vars->raycast->posy
-				- vars->raycast->planey * MOVE_SPEED)] == '0'
-			|| vars->map[(int)(vars->raycast->posx)][(int)(vars->raycast->posy
-				- vars->raycast->planey * MOVE_SPEED)] == 'N')
-			vars->raycast->posy -= vars->raycast->planey * moveSpeed;
-	}
+		left_utils(vars, MOVE_SPEED);
 	if (mlx_is_key_down(vars->window, MLX_KEY_D)
 		&& (vars->map[(int)(vars->raycast->posx + vars->raycast->planex
 				* moveSpeed)][(int)vars->raycast->posy] != '1'
 			&& vars->map[(int)(vars->raycast->posx + vars->raycast->planex
 				* moveSpeed)][(int)vars->raycast->posy] != ' '))
-		right_and_left_utils(vars, moveSpeed);
+		right_utils(vars, MOVE_SPEED);
 }
 
 void	rotate_camera(t_vars *vars, double rotSpeed)
@@ -76,7 +65,7 @@ void	rotate_camera(t_vars *vars, double rotSpeed)
 		vars->raycast->planey = old_planex * sin(-rotSpeed)
 			+ vars->raycast->planey * cos(-rotSpeed);
 	}
-	if (mlx_is_key_down(vars->window, MLX_KEY_LEFT))
+	else if (mlx_is_key_down(vars->window, MLX_KEY_LEFT))
 		rc_utils(vars, rotSpeed, old_dirx, old_planex);
 }
 
