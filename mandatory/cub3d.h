@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 09:41:36 by rgobet            #+#    #+#             */
-/*   Updated: 2024/09/20 12:48:33 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/23 08:49:42 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,11 +144,6 @@ void					select_textures(t_vars *vars);
 void					put_pixels(t_vars *vars, int x);
 void					texture_coord(t_vars *vars);
 void					wall_start_end(t_vars *vars);
-void					forward_and_back_utils_w(t_vars *vars,
-							double moveSpeed);
-void					forward_and_back_utils_s(t_vars *vars,
-							double moveSpeed);
-void					right_and_left_utils(t_vars *vars, double moveSpeed);
 void					forward_and_back(t_vars *vars, double moveSpeed);
 void					right_and_left(t_vars *vars, double moveSpeed);
 void					rotate_camera(t_vars *vars, double rotSpeed);
