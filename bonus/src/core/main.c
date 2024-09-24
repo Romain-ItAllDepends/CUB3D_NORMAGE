@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 08:23:16 by rgobet            #+#    #+#             */
-/*   Updated: 2024/09/24 09:31:18 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/24 09:44:20 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ static void	mini_map(mlx_key_data_t key, void *param)
 
 static void	setup_hooks(t_vars *vars)
 {
-	mlx_image_to_window(vars->window, vars->images->mini_map, 20, 20);
 	vars->cursor = mlx_create_std_cursor(MLX_CURSOR_CROSSHAIR);
 	if (!vars->cursor)
 	{
@@ -95,6 +94,8 @@ static void	setup_hooks(t_vars *vars)
 		WIDTH / 2 + 10, HEIGHT / 2 + 10);
 	mlx_image_to_window(vars->window, vars->images->weapon1, 700, 700);
 	mlx_image_to_window(vars->window, vars->images->weapon2, 250, 450);
+	mlx_image_to_window(vars->window, vars->images->mini_map, 20, 20);
+	mlx_set_instance_depth(vars->images->mini_map->instances, (int32_t)5);
 	mlx_set_instance_depth(vars->images->crosshair->instances, (int32_t)5);
 	mlx_set_instance_depth(vars->images->weapon1->instances, (int32_t)4);
 	mlx_set_instance_depth(vars->images->weapon2->instances, (int32_t)4);
