@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 08:23:16 by rgobet            #+#    #+#             */
-/*   Updated: 2024/09/24 09:33:37 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/24 09:41:38 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ static void	key_recorder(void *param)
 
 static void	setup_hooks(t_vars *vars)
 {
-	mlx_image_to_window(vars->window, vars->images->mini_map, 20, 20);
 	vars->cursor = mlx_create_std_cursor(MLX_CURSOR_CROSSHAIR);
 	if (!vars->cursor)
 	{
