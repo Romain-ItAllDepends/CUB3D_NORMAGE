@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 12:49:46 by rgobet            #+#    #+#             */
-/*   Updated: 2024/09/21 09:28:07 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/24 09:34:12 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,5 @@ void	paint_on_screen(t_vars *vars)
 		x++;
 	}
 	mlx_image_to_window(vars->window, vars->images->screen, 0, 0);
+	mlx_set_instance_depth(vars->images->screen->instances, (int32_t)1);
 }

@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 08:23:16 by rgobet            #+#    #+#             */
-/*   Updated: 2024/09/21 08:36:24 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/24 09:33:37 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,27 +27,27 @@ static void	key_recorder(void *param)
 
 static void	setup_hooks(t_vars *vars)
 {
-	paint_on_screen(vars);
+	mlx_image_to_window(vars->window, vars->images->mini_map, 20, 20);
 	vars->cursor = mlx_create_std_cursor(MLX_CURSOR_CROSSHAIR);
 	if (!vars->cursor)
 	{
 		ft_putstr_fd(
 			"Error\nAn error occurred while creating the cursor!\n", 2);
 		ft_free_vars(vars);
-		exit(1);
 	}
 	mlx_set_cursor_mode(vars->window, MLX_MOUSE_HIDDEN);
 	mlx_image_to_window(vars->window, vars->images->crosshair,
 		WIDTH / 2 + 10, HEIGHT / 2 + 10);
+	mlx_set_instance_depth(vars->images->crosshair->instances, (int32_t)5);
 	if (mlx_resize_image(vars->images->crosshair, 20, 20) == 0)
 	{
-		ft_free_vars(vars);
 		ft_putstr_fd("Error\nAn error occured while resizing cusor!\n", 2);
-		exit(1);
+		ft_free_vars(vars);
 	}
 	mlx_set_mouse_pos(vars->window, WIDTH / 2, HEIGHT / 2);
 	mlx_set_cursor(vars->window, vars->cursor);
 	mlx_loop_hook(vars->window, (void *)key_recorder, vars);
+	paint_on_screen(vars);
 }
 
 int	main(int ac, char **av)

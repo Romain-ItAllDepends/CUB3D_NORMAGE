@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 08:23:16 by rgobet            #+#    #+#             */
-/*   Updated: 2024/09/23 12:04:06 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/24 09:31:18 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,13 @@ static void	key_recorder(void *param)
 		ft_free_vars(vars);
 	if (mlx_is_key_down(vars->window, MLX_KEY_1))
 	{
-		vars->images->weapon2->instances->enabled = 0;
-		vars->images->weapon1->instances->enabled = 1;
+		vars->images->weapon2->instances->enabled = false;
+		vars->images->weapon1->instances->enabled = true;
 	}
 	if (mlx_is_key_down(vars->window, MLX_KEY_2))
 	{
-		vars->images->weapon2->instances->enabled = 1;
-		vars->images->weapon1->instances->enabled = 0;
+		vars->images->weapon2->instances->enabled = true;
+		vars->images->weapon1->instances->enabled = false;
 	}
 	if (mlx_is_mouse_down(vars->window, MLX_MOUSE_BUTTON_LEFT))
 		vars->is_shooting = 1;
@@ -82,10 +82,6 @@ static void	mini_map(mlx_key_data_t key, void *param)
 
 static void	setup_hooks(t_vars *vars)
 {
-	paint_on_screen(vars);
-	mlx_image_to_window(vars->window, vars->images->weapon1, 700, 700);
-	mlx_image_to_window(vars->window, vars->images->weapon2, 250, 450);
-	vars->images->weapon2->enabled = 0;
 	mlx_image_to_window(vars->window, vars->images->mini_map, 20, 20);
 	vars->cursor = mlx_create_std_cursor(MLX_CURSOR_CROSSHAIR);
 	if (!vars->cursor)
@@ -93,22 +89,27 @@ static void	setup_hooks(t_vars *vars)
 		ft_putstr_fd(
 			"Error\nAn error occurred while creating the cursor!\n", 2);
 		ft_free_vars(vars);
-		exit(1);
 	}
 	mlx_set_cursor_mode(vars->window, MLX_MOUSE_HIDDEN);
 	mlx_image_to_window(vars->window, vars->images->crosshair,
 		WIDTH / 2 + 10, HEIGHT / 2 + 10);
+	mlx_image_to_window(vars->window, vars->images->weapon1, 700, 700);
+	mlx_image_to_window(vars->window, vars->images->weapon2, 250, 450);
+	mlx_set_instance_depth(vars->images->crosshair->instances, (int32_t)5);
+	mlx_set_instance_depth(vars->images->weapon1->instances, (int32_t)4);
+	mlx_set_instance_depth(vars->images->weapon2->instances, (int32_t)4);
+	vars->images->weapon2->instances->enabled = false;
 	if (mlx_resize_image(vars->images->crosshair, 20, 20) == 0)
 	{
-		ft_free_vars(vars);
 		ft_putstr_fd("Error\nAn error occured while resizing cusor!\n", 2);
-		exit(1);
+		ft_free_vars(vars);
 	}
 	mlx_set_mouse_pos(vars->window, WIDTH / 2, HEIGHT / 2);
 	mlx_set_cursor(vars->window, vars->cursor);
 	mlx_cursor_hook(vars->window, (void *)mouse_recorder, vars);
 	mlx_loop_hook(vars->window, (void *)key_recorder, vars);
 	mlx_key_hook(vars->window, (void *)mini_map, vars);
+	paint_on_screen(vars);
 }
 
 int	main(int ac, char **av)
