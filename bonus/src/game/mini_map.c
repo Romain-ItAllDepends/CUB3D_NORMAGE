@@ -47,12 +47,13 @@ static void	display_map(t_vars *vars, int32_t color, int x, int y)
 
 void	player_on_mini_map(t_vars *vars)
 {
-	int player_x;
-	int player_y;
-	
+	int	player_x;
+	int	player_y;
+
 	player_x = (int)(vars->raycast->posx * 4);
 	player_y = (int)(vars->raycast->posy * 4);
-	mlx_put_pixel(vars->images->mini_map, player_y, player_x, ft_pixel(80, 255, 50, 1000));
+	mlx_put_pixel(vars->images->mini_map, player_y,
+		player_x, ft_pixel(80, 255, 50, 1000));
 }
 
 void	build_mini_map(t_vars *vars)

@@ -17,23 +17,27 @@ static void	mouse_recorder(void *param)
 	t_vars		*vars;
 	int			x;
 	int			y;
-	double		rotSpeed;
-	double oldDirX;
-	double oldPlaneX;
-	double angle;
+	double		rotspeed;
+	double		olddirx;
+	double		oldplanex;
+	double		angle;
 
 	vars = (t_vars *)param;
-	mlx_get_mouse_pos(vars->window, &x, &y); // y is unused
-	rotSpeed = ROT_SPEED * 40; // sensi de la souris
-	if (x != WIDTH / 2) // Vérifie si la souris n'est pas au centre de l'écran (en largeur). Si c'est le cas, la caméra doit être tournée.
+	mlx_get_mouse_pos(vars->window, &x, &y);
+	rotspeed = ROT_SPEED * 40;
+	if (x != WIDTH / 2)
 	{
-		oldDirX = vars->raycast->dirx;
-		oldPlaneX = vars->raycast->planex;
-		angle = (WIDTH / 2 - x) * rotSpeed / WIDTH; // Calcule l'angle de rotation en fonction de la distance entre la position actuelle de la souris et le centre de l'écran. Le signe de l'angle est inversé pour corriger la direction de la rotation. normalement c'est bon mais si tu veux la souris dans lautre sens c'est x - WIDTH / 2
-		vars->raycast->dirx = vars->raycast->dirx * cos(angle) - vars->raycast->diry * sin(angle);
-		vars->raycast->diry = oldDirX * sin(angle) + vars->raycast->diry * cos(angle);
-		vars->raycast->planex = vars->raycast->planex * cos(angle) - vars->raycast->planey * sin(angle);
-		vars->raycast->planey = oldPlaneX * sin(angle) + vars->raycast->planey * cos(angle);
+		olddirx = vars->raycast->dirx;
+		oldplanex = vars->raycast->planex;
+		angle = (WIDTH / 2 - x) * rotspeed / WIDTH;
+		vars->raycast->dirx = vars->raycast->dirx
+			* cos(angle) - vars->raycast->diry * sin(angle);
+		vars->raycast->diry = olddirx * sin(angle)
+			+ vars->raycast->diry * cos(angle);
+		vars->raycast->planex = vars->raycast->planex * cos(angle)
+			- vars->raycast->planey * sin(angle);
+		vars->raycast->planey = oldplanex * sin(angle)
+			+ vars->raycast->planey * cos(angle);
 		mlx_set_mouse_pos(vars->window, WIDTH / 2, HEIGHT / 2);
 	}
 }

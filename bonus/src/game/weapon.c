@@ -19,8 +19,6 @@ void ft_shoot(t_vars *vars)
 	i = 0;
 	if (vars->is_shooting && vars->images->weapon1->instances->x > 650)
 	{
-		// play_music();
-		// Déplacer l'image vers la position de recul
 		while (i < 500000)
 		{
 			if (i % 10000 == 0)
@@ -33,7 +31,6 @@ void ft_shoot(t_vars *vars)
 	}
 	else if (vars->images->weapon1->instances->x < 700 && !vars->is_shooting)
 	{
-		// Remettre l'image à sa position initiale
 		while (i < 500000)
 		{
 			if (i % 10000 == 0)

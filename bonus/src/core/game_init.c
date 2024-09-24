@@ -54,13 +54,15 @@ static void	weapons_setup(t_vars *vars)
 	vars->textures->weapon1 = mlx_load_png("./textures/ak47.png");
 	if (!vars->textures->weapon1)
 		texture_error(vars);
-	vars->images->weapon1 = mlx_texture_to_image(vars->window, vars->textures->weapon1);
+	vars->images->weapon1 = mlx_texture_to_image(vars->window,
+			vars->textures->weapon1);
 	if (!vars->images->weapon1)
 		texture_error(vars);
 	vars->textures->weapon2 = mlx_load_png("./textures/cut.png");
 	if (!vars->textures->weapon2)
 		texture_error(vars);
-	vars->images->weapon2 = mlx_texture_to_image(vars->window, vars->textures->weapon2);
+	vars->images->weapon2 = mlx_texture_to_image(vars->window,
+			vars->textures->weapon2);
 	if (!vars->images->weapon2)
 		texture_error(vars);
 	if (mlx_resize_image(vars->images->weapon1, 700, 450) == 0)
