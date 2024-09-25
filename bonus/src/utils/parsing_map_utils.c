@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 09:10:42 by rgobet            #+#    #+#             */
-/*   Updated: 2024/09/15 09:52:24 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/25 14:00:40 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	verif_map_split(char *s)
 		if (s[i] == '\n' && j == 1)
 		{
 			ft_putstr_fd(
-				"Error\nBlank line in the map or too much parameters!\n", 2);
+				"Error\nBlank line in the map or too much parameters! ❌\n", 2);
 			return (1);
 		}
 		else if (s[i] == '\n')

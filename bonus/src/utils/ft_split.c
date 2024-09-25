@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 11:40:34 by rgobet            #+#    #+#             */
-/*   Updated: 2024/08/17 09:11:29 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/25 14:00:37 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ static int	is_map_splitted(char *s)
 		i++;
 	if (j != 6)
 	{
-		ft_putstr_fd("Error\nToo much or less parameters in the file!\n", 2);
+		ft_putstr_fd("Error\nToo much or less parameters in the file! ❌\n", 2);
 		return (1);
 	}
 	if (verif_map_split(&s[i]) == 1)

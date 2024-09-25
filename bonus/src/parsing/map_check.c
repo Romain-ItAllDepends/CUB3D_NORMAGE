@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 17:31:13 by rgobet            #+#    #+#             */
-/*   Updated: 2024/09/15 08:53:46 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/25 13:56:31 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,43 @@ static int	verification_of_border(char *borders)
 	return (0);
 }
 
+static void	check_diff_wall(char **map, char *tab, int x)
+{
+	int	i;
+	int	j;
+
+	i = ft_strlen(map[x]) - 1;
+	j = ft_strlen(map[x - 1]) - 1;
+	if (i > j)
+	{
+		while (i != j)
+		{
+			if (map[x][i] != '1' && map[x][i] != ' ')
+			{
+				free(map);
+				free(tab);
+				ft_putstr_fd("Error\nMap isn't closed! ❌\n", 2);
+				exit(1);
+			}
+			i--;
+		}
+	}
+	else
+	{
+		while (j != i)
+		{
+			if (map[x - 1][j] != '1' && map[x - 1][j] != ' ')
+			{
+				free(map);
+				free(tab);
+				ft_putstr_fd("Error\nMap isn't closed! ❌\n", 2);
+				exit(1);
+			}
+			j--;
+		}
+	}
+}
+
 int	check_closed_map(char **map)
 {
 	int		i;
@@ -111,6 +148,8 @@ int	check_closed_map(char **map)
 	while (map[i])
 	{
 		j = skip_space(map[i]);
+		if (abs(ft_strlen(map[i]) - ft_strlen(map[i - 1])) >= 2 && i != 0)
+			check_diff_wall(map, tab, i);
 		while (map[i][j])
 		{
 			get_borders(tab, map[i], j);

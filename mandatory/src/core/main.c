@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 08:23:16 by rgobet            #+#    #+#             */
-/*   Updated: 2024/09/24 09:41:38 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/25 13:55:41 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	setup_hooks(t_vars *vars)
 	if (!vars->cursor)
 	{
 		ft_putstr_fd(
-			"Error\nAn error occurred while creating the cursor!\n", 2);
+			"Error\nAn error occurred while creating the cursor! ❌\n", 2);
 		ft_free_vars(vars);
 	}
 	mlx_set_cursor_mode(vars->window, MLX_MOUSE_HIDDEN);
@@ -40,7 +40,7 @@ static void	setup_hooks(t_vars *vars)
 	mlx_set_instance_depth(vars->images->crosshair->instances, (int32_t)5);
 	if (mlx_resize_image(vars->images->crosshair, 20, 20) == 0)
 	{
-		ft_putstr_fd("Error\nAn error occured while resizing cusor!\n", 2);
+		ft_putstr_fd("Error\nAn error occured while resizing cusor! ❌\n", 2);
 		ft_free_vars(vars);
 	}
 	mlx_set_mouse_pos(vars->window, WIDTH / 2, HEIGHT / 2);
