@@ -143,6 +143,7 @@ void					check_data(char **file);
 void					check_map(char **map);
 int						check_closed_map(char **map);
 int						check_player_char(char **map);
+void					check_diff_wall(char **map, char *tab, int x);
 
 /*
  * Game
@@ -168,6 +169,8 @@ void					rotate_camera(t_vars *vars, double rotSpeed);
 void					player_on_mini_map(t_vars *vars);
 void					build_mini_map(t_vars *vars);
 void					ft_shoot(t_vars *vars);
+void					update_raycast(t_vars *vars, int x, double rotspeed);
+void					mini_map(mlx_key_data_t key, void *param);
 
 /*
  * Utils

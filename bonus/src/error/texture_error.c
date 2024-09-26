@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 09:28:28 by rgobet            #+#    #+#             */
-/*   Updated: 2024/09/25 14:00:07 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/19 09:58:00 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	resize_error(t_vars *vars)
 {
-	ft_putstr_fd("Error\nAn error occured while resizing image! ❌\n", 2);
+	ft_putstr_fd("Error\nAn error occured while resizing image!\n", 2);
 	if (!vars->images->north)
 		mlx_delete_image(vars->window, vars->images->north);
 	if (!vars->images->south)
@@ -33,7 +33,7 @@ void	resize_error(t_vars *vars)
 
 void	screen_error(t_vars *vars)
 {
-	ft_putstr_fd("Error\nAn error occurred while creating the image! ❌\n", 2);
+	ft_putstr_fd("Error\nAn error occurred while creating the image!\n", 2);
 	ft_free_vars(vars);
 	exit(1);
 }

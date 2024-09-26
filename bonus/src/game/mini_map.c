@@ -25,6 +25,15 @@
 /* ************************************************************************** */
 #include "../../cub3d.h"
 
+void	mini_map(mlx_key_data_t key, void *param)
+{
+	t_vars	*vars;
+
+	vars = param;
+	if (key.key == MLX_KEY_M && key.action == MLX_PRESS)
+		vars->images->mini_map->enabled = !vars->images->mini_map->enabled;
+}
+
 static int32_t	ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
 {
 	return (r << 24 | g << 16 | b << 8 | a);
@@ -32,8 +41,8 @@ static int32_t	ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
 
 static void	display_map(t_vars *vars, int32_t color, int x, int y)
 {
-	int		i;
-	int		j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i <= 4)
@@ -52,8 +61,8 @@ void	player_on_mini_map(t_vars *vars)
 
 	player_x = (int)(vars->raycast->posx * 4);
 	player_y = (int)(vars->raycast->posy * 4);
-	mlx_put_pixel(vars->images->mini_map, player_y,
-		player_x, ft_pixel(80, 255, 50, 1000));
+	mlx_put_pixel(vars->images->mini_map, player_y, player_x, ft_pixel(80, 255,
+			50, 1000));
 }
 
 void	build_mini_map(t_vars *vars)

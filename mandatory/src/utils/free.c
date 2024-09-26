@@ -27,22 +27,6 @@ void	ft_free(char **str)
 	free(str);
 }
 
-// static void	free_images(t_vars *vars)
-// {
-// 	if (vars && vars->images && vars->images->screen)
-// 		mlx_delete_image(vars->window, vars->images->screen);
-// 	if (vars && vars->images && vars->images->crosshair)
-// 		mlx_delete_image(vars->window, vars->images->crosshair);
-// 	if (vars && vars->images && vars->images->north)
-// 		mlx_delete_image(vars->window, vars->images->north);
-// 	if (vars && vars->images && vars->images->south)
-// 		mlx_delete_image(vars->window, vars->images->south);
-// 	if (vars && vars->images && vars->images->east)
-// 		mlx_delete_image(vars->window, vars->images->east);
-// 	if (vars && vars->images && vars->images->west)
-// 		mlx_delete_image(vars->window, vars->images->west);
-// }
-
 static void	free_textures(t_vars *vars)
 {
 	if (vars && vars->textures && vars->textures->crosshair)
@@ -73,7 +57,6 @@ void	ft_free_vars(t_vars *vars)
 		free(vars->east);
 	if (vars && vars->west)
 		free(vars->west);
-	// free_images(vars);
 	if (vars && vars->images)
 		free(vars->images);
 	free_textures(vars);

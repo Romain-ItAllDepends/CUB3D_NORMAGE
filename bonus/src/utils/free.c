@@ -77,7 +77,6 @@ void	ft_free_vars(t_vars *vars)
 		free(vars->east);
 	if (vars && vars->west)
 		free(vars->west);
-	// free_images(vars);
 	if (vars && vars->images)
 		free(vars->images);
 	free_textures(vars);

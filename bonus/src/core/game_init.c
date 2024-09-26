@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 02:54:38 by vgodart           #+#    #+#             */
-/*   Updated: 2024/09/25 13:59:33 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/24 09:13:59 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	initialize_window(t_vars *vars)
 	vars->window = mlx_init(WIDTH, HEIGHT, "CUB3D", 0);
 	if (!vars->window)
 	{
-		ft_putstr_fd("Error\nAn error occurred while opening the window! ❌\n", 2);
+		ft_putstr_fd("Error\nAn error occurred while opening the window!\n", 2);
 		ft_free_vars(vars);
 	}
 }

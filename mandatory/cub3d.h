@@ -132,6 +132,7 @@ void					check_data(char **file);
 void					check_map(char **map);
 int						check_closed_map(char **map);
 int						check_player_char(char **map);
+void					check_diff_wall(char **map, char *tab, int x);
 
 /*
  * Game
@@ -146,8 +147,10 @@ void					texture_coord(t_vars *vars);
 void					wall_start_end(t_vars *vars);
 void					right_utils(t_vars *vars, double moveSpeed);
 void					left_utils(t_vars *vars, double moveSpeed);
-void					forward_and_back_utils_s(t_vars *vars, double moveSpeed);
-void					forward_and_back_utils_w(t_vars *vars, double moveSpeed);
+void					forward_and_back_utils_s(t_vars *vars,
+							double moveSpeed);
+void					forward_and_back_utils_w(t_vars *vars,
+							double moveSpeed);
 void					forward_and_back(t_vars *vars, double moveSpeed);
 void					right_and_left(t_vars *vars, double moveSpeed);
 void					rotate_camera(t_vars *vars, double rotSpeed);

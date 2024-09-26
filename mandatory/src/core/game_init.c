@@ -17,7 +17,7 @@ void	initialize_window(t_vars *vars)
 	vars->window = mlx_init(WIDTH, HEIGHT, "CUB3D", 0);
 	if (!vars->window)
 	{
-		ft_putstr_fd("Error\nAn error occurred while opening the window! ❌\n", 2);
+		ft_putstr_fd("Error\noccurred while opening the window! ❌\n", 2);
 		ft_free_vars(vars);
 		exit(1);
 	}

@@ -15,6 +15,7 @@ MY_SOURCES= src/core/main.c \
 			src/parsing/parse_file.c \
 			src/parsing/checker.c \
 			src/parsing/map_check.c \
+			src/parsing/map_check_utils.c \
 			src/utils/ft_atoi.c \
 			src/utils/ft_calloc.c \
 			src/utils/ft_putstr_fd.c \

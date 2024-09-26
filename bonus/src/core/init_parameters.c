@@ -66,3 +66,13 @@ void	north_south_textures(char *str, t_vars *vars, char dir)
 		}
 	}
 }
+
+void	initialize_vars(t_vars **vars, char *file)
+{
+	*vars = ft_calloc(1, sizeof(t_vars));
+	if (!*vars)
+		error_malloc(-1, NULL);
+	init(*vars, file);
+	if (!*vars)
+		exit(1);
+}
