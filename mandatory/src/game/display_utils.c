@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 12:46:22 by rgobet            #+#    #+#             */
-/*   Updated: 2024/09/24 09:34:47 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/28 15:18:31 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,24 +32,24 @@ void	select_textures(t_vars *vars)
 {
 	if (vars->raycast->side == 0 && vars->raycast->ray_dirx < 0)
 	{
-		vars->raycast->color = get_color(((int32_t *)vars->images->west->pixels)
-			[TEXWIDTH * vars->raycast->texy + vars->raycast->texx]);
-	}
-	else if (vars->raycast->side == 0 && vars->raycast->ray_dirx >= 0)
-	{
-		vars->raycast->color = get_color(((int32_t *)vars->images->east->pixels)
-			[TEXWIDTH * vars->raycast->texy + vars->raycast->texx]);
-	}
-	else if (vars->raycast->side == 1 && vars->raycast->ray_diry < 0)
-	{
 		vars->raycast->color = get_color(
 				((int32_t *)vars->images->north->pixels)
 			[TEXWIDTH * vars->raycast->texy + vars->raycast->texx]);
 	}
-	else
+	else if (vars->raycast->side == 0 && vars->raycast->ray_dirx >= 0)
 	{
 		vars->raycast->color = get_color(
 				((int32_t *)vars->images->south->pixels)
+			[TEXWIDTH * vars->raycast->texy + vars->raycast->texx]);
+	}
+	else if (vars->raycast->side == 1 && vars->raycast->ray_diry < 0)
+	{
+		vars->raycast->color = get_color(((int32_t *)vars->images->west->pixels)
+			[TEXWIDTH * vars->raycast->texy + vars->raycast->texx]);
+	}
+	else
+	{
+		vars->raycast->color = get_color(((int32_t *)vars->images->east->pixels)
 			[TEXWIDTH * vars->raycast->texy + vars->raycast->texx]);
 	}
 }

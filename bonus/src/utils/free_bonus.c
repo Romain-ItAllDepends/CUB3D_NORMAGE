@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   free_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 12:06:40 by rgobet            #+#    #+#             */
-/*   Updated: 2024/09/23 14:11:46 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/28 10:29:55 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,6 @@ void	ft_free(char **str)
 	}
 	free(str);
 }
-
-// static void	free_images(t_vars *vars)
-// {
-// 	if (vars && vars->images && vars->images->screen)
-// 		mlx_delete_image(vars->window, vars->images->screen);
-// 	if (vars && vars->images && vars->images->crosshair)
-// 		mlx_delete_image(vars->window, vars->images->crosshair);
-// 	if (vars && vars->images && vars->images->north)
-// 		mlx_delete_image(vars->window, vars->images->north);
-// 	if (vars && vars->images && vars->images->south)
-// 		mlx_delete_image(vars->window, vars->images->south);
-// 	if (vars && vars->images && vars->images->east)
-// 		mlx_delete_image(vars->window, vars->images->east);
-// 	if (vars && vars->images && vars->images->west)
-// 		mlx_delete_image(vars->window, vars->images->west);
-// }
 
 static void	free_textures(t_vars *vars)
 {

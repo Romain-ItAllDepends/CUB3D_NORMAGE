@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 05:02:12 by vgodart           #+#    #+#             */
-/*   Updated: 2024/09/23 09:42:48 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/28 15:25:00 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ void	rotate_camera(t_vars *vars, double rotSpeed)
 
 	old_dirx = vars->raycast->dirx;
 	old_planex = vars->raycast->planex;
-	if (mlx_is_key_down(vars->window, MLX_KEY_RIGHT))
+	if ((mlx_is_key_down(vars->window, MLX_KEY_RIGHT) && vars->raycast->facing == NORTH)
+		|| (mlx_is_key_down(vars->window, MLX_KEY_LEFT) && vars->raycast->facing == SOUTH))
 	{
 		vars->raycast->dirx = vars->raycast->dirx * cos(-rotSpeed)
 			- vars->raycast->diry * sin(-rotSpeed);
@@ -65,7 +66,8 @@ void	rotate_camera(t_vars *vars, double rotSpeed)
 		vars->raycast->planey = old_planex * sin(-rotSpeed)
 			+ vars->raycast->planey * cos(-rotSpeed);
 	}
-	else if (mlx_is_key_down(vars->window, MLX_KEY_LEFT))
+	else if ((mlx_is_key_down(vars->window, MLX_KEY_LEFT) && vars->raycast->facing == NORTH)
+		|| (mlx_is_key_down(vars->window, MLX_KEY_RIGHT) && vars->raycast->facing == SOUTH))
 		rc_utils(vars, rotSpeed, old_dirx, old_planex);
 }
 

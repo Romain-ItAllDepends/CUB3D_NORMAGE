@@ -1,4 +1,4 @@
-NAME=cub3d
+NAME=cub3D
 
 MY_SOURCES= src/core/main_bonus.c \
 			src/core/init_bonus.c \

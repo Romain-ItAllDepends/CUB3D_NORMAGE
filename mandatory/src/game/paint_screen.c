@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 12:49:46 by rgobet            #+#    #+#             */
-/*   Updated: 2024/09/24 09:34:12 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/28 15:13:58 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	paint_on_screen(t_vars *vars)
 	int	x;
 
 	x = 0;
+	printf("%lf, %lf\n", vars->raycast->dirx, vars->raycast->diry);
 	mlx_delete_image(vars->window, vars->images->screen);
 	vars->images->screen = mlx_new_image(vars->window, WIDTH, HEIGHT);
 	while (x < WIDTH)

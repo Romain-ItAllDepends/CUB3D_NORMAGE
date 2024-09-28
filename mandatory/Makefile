@@ -1,4 +1,4 @@
-NAME=cub3d
+NAME=cub3D
 
 MY_SOURCES= src/core/main.c \
 			src/core/init.c \
@@ -37,7 +37,7 @@ white='\033[1;37m'
 RM=rm -f
 
 CC=clang
-CFLAGS=-Wall -Wextra -Werror -I./MLX42/include -g
+CFLAGS=-Wall -Wextra -Werror -I./MLX42/include
 MLXFLAGS= -ldl -lX11 -lglfw -lm -lz -lbsd -lXext 
 
 all: $(NAME)
