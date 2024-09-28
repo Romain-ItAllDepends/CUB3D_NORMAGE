@@ -31,7 +31,8 @@ static void	dda(t_vars *vars)
 		if (!vars->map[vars->raycast->mapx]
 			|| !vars->map[vars->raycast->mapx][vars->raycast->mapy])
 			vars->raycast->hit = 1;
-		else if (vars->map[vars->raycast->mapx][vars->raycast->mapy] == '1')
+		else if (vars->map[vars->raycast->mapx][vars->raycast->mapy] == '1'
+			|| vars->map[vars->raycast->mapx][vars->raycast->mapy] == ' ')
 			vars->raycast->hit = 1;
 	}
 }

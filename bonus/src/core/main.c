@@ -76,7 +76,7 @@ static void	initialize_cursor_and_images(t_vars *vars)
 	mlx_image_to_window(vars->window, vars->images->weapon2, 250, 450);
 	mlx_image_to_window(vars->window, vars->images->mini_map, 20, 20);
 	mlx_set_instance_depth(vars->images->mini_map->instances, (int32_t)5);
-	mlx_set_instance_depth(vars->images->crosshair->instances, (int32_t)5);
+	mlx_set_instance_depth(vars->images->crosshair->instances, (int32_t)6);
 	mlx_set_instance_depth(vars->images->weapon1->instances, (int32_t)4);
 	mlx_set_instance_depth(vars->images->weapon2->instances, (int32_t)4);
 	vars->images->weapon2->instances->enabled = false;

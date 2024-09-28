@@ -91,7 +91,7 @@ void	check_data(char **file)
 	while (file && file[i])
 	{
 		start = skip_space(file[i]);
-		if (file[i][start] == '1')
+		if (file[i][start] == '1' || file[i][start] == ' ')
 		{
 			i++;
 			continue ;
