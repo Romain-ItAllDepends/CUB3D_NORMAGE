@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 08:55:47 by rgobet            #+#    #+#             */
-/*   Updated: 2024/09/19 08:48:40 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/28 15:53:19 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,15 @@ void	raycast_vars_init(t_vars *vars)
 		vars->textures = NULL;
 		ft_free_vars(vars);
 	}
-	vars->raycast->planex = 0;
-	vars->raycast->planey = 2 * atan(0.9 / 1.0);
+	get_player_pos(vars);
+	if (vars->raycast->facing == NORTH || vars->raycast->facing == SOUTH)
+	{
+		vars->raycast->planex = 0;
+		vars->raycast->planey = 2 * atan(0.9 / 1.0);
+	}
+	else
+	{
+		vars->raycast->planex = 2 * atan(0.9 / 1.0);
+		vars->raycast->planey = 0;
+	}
 }

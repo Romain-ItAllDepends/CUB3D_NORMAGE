@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 07:15:58 by rgobet            #+#    #+#             */
-/*   Updated: 2024/09/18 12:17:59 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/28 15:52:20 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,6 @@ void	init(t_vars *vars, char *str)
 		error_malloc(fd, file);
 	}
 	raycast_vars_init(vars);
-	get_player_pos(vars);
 	get_parameters(vars, file);
 	ft_free(file);
 }
