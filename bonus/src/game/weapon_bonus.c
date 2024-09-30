@@ -56,36 +56,34 @@ void	ft_shoot(t_vars *vars)
 	}
 }
 
-void	update_raycast(t_vars *vars, int x, double rotspeed)
+static void	rotate_raycast(t_vars *vars, double angle)
 {
 	double	olddirx;
 	double	oldplanex;
-	double	angle;
 
 	olddirx = vars->raycast->dirx;
 	oldplanex = vars->raycast->planex;
-	printf("%lf, %lf\n", olddirx, vars->raycast->diry);
+	vars->raycast->dirx = vars->raycast->dirx * cos(angle)
+		- vars->raycast->diry * sin(angle);
+	vars->raycast->diry = olddirx * sin(angle)
+		+ vars->raycast->diry * cos(angle);
+	vars->raycast->planex = vars->raycast->planex * cos(angle)
+		- vars->raycast->planey * sin(angle);
+	vars->raycast->planey = oldplanex * sin(angle)
+		+ vars->raycast->planey * cos(angle);
+}
+
+void	update_raycast(t_vars *vars, int x, double rotspeed)
+{
+	double	angle;
+
 	angle = (WIDTH / 2 - x) * rotspeed / WIDTH;
 	if (vars->raycast->facing == SOUTH || vars->raycast->facing == WEST)
 	{
-		vars->raycast->dirx = vars->raycast->dirx * cos(-angle)
-			- vars->raycast->diry * sin(-angle);
-		vars->raycast->diry = olddirx * sin(-angle)
-			+ vars->raycast->diry * cos(-angle);
-		vars->raycast->planex = vars->raycast->planex * cos(-angle)
-			- vars->raycast->planey * sin(-angle);
-		vars->raycast->planey = oldplanex * sin(-angle)
-			+ vars->raycast->planey * cos(-angle);
+		rotate_raycast(vars, -angle);
 	}
 	else
 	{
-		vars->raycast->dirx = vars->raycast->dirx * cos(angle) - vars->raycast->diry
-			* sin(angle);
-		vars->raycast->diry = olddirx * sin(angle) + vars->raycast->diry
-			* cos(angle);
-		vars->raycast->planex = vars->raycast->planex * cos(angle)
-			- vars->raycast->planey * sin(angle);
-		vars->raycast->planey = oldplanex * sin(angle) + vars->raycast->planey
-			* cos(angle);
+		rotate_raycast(vars, angle);
 	}
 }

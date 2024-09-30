@@ -69,9 +69,7 @@ void	put_pixels(t_vars *vars, int x)
 	{
 		vars->raycast->texy = (int)vars->raycast->tex_pos & (TEXHEIGHT - 1);
 		// if (vars->raycast->dirx > 0)
-			
 		// if (vars->raycast->diry < 0)
-
 		vars->raycast->tex_pos += vars->raycast->step;
 		vars->raycast->color = 0;
 		select_textures(vars);
