@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 12:46:22 by rgobet            #+#    #+#             */
-/*   Updated: 2024/09/28 15:18:31 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/30 11:58:36 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ void	put_pixels(t_vars *vars, int x)
 	int	i;
 
 	i = 0;
+	if (vars->raycast->facing == SOUTH || vars->raycast->facing == WEST)
+		vars->raycast->texx = abs(vars->raycast->texx - TEXWIDTH);
 	while (i < vars->raycast->draw_start)
 	{
 		mlx_put_pixel(vars->images->screen, x, i, (vars->ceiling[0] << 24)
