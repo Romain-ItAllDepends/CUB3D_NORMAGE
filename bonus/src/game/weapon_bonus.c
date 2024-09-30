@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 11:03:22 by rgobet            #+#    #+#             */
-/*   Updated: 2024/09/30 11:45:59 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/30 15:32:26 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,5 @@ void	update_raycast(t_vars *vars, int x, double rotspeed)
 	double	angle;
 
 	angle = (WIDTH / 2 - x) * rotspeed / WIDTH;
-	if (vars->raycast->facing == SOUTH || vars->raycast->facing == WEST)
-		rotate_raycast(vars, -angle);
-	else
-		rotate_raycast(vars, angle);
+	rotate_raycast(vars, angle);
 }

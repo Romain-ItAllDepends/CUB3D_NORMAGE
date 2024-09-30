@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 05:02:12 by vgodart           #+#    #+#             */
-/*   Updated: 2024/09/28 15:54:09 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/30 15:36:46 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,23 +67,9 @@ void	rotate_camera(t_vars *vars, double rotSpeed)
 
 	old_dirx = vars->raycast->dirx;
 	old_planex = vars->raycast->planex;
-	if ((mlx_is_key_down(vars->window, MLX_KEY_RIGHT)
-			&& vars->raycast->facing == NORTH)
-		|| (mlx_is_key_down(vars->window, MLX_KEY_LEFT)
-			&& vars->raycast->facing == SOUTH)
-		|| (mlx_is_key_down(vars->window, MLX_KEY_RIGHT)
-			&& vars->raycast->facing == EAST)
-		|| (mlx_is_key_down(vars->window, MLX_KEY_LEFT)
-			&& vars->raycast->facing == WEST))
+	if (mlx_is_key_down(vars->window, MLX_KEY_RIGHT))
 		rotate_camera_left_right(vars, rotSpeed, old_dirx, old_planex);
-	else if ((mlx_is_key_down(vars->window, MLX_KEY_LEFT)
-			&& vars->raycast->facing == NORTH)
-		|| (mlx_is_key_down(vars->window, MLX_KEY_RIGHT)
-			&& vars->raycast->facing == SOUTH)
-		|| (mlx_is_key_down(vars->window, MLX_KEY_LEFT)
-			&& vars->raycast->facing == EAST)
-		|| (mlx_is_key_down(vars->window, MLX_KEY_RIGHT)
-			&& vars->raycast->facing == WEST))
+	else if (mlx_is_key_down(vars->window, MLX_KEY_LEFT))
 		rc_utils(vars, rotSpeed, old_dirx, old_planex);
 }
 
