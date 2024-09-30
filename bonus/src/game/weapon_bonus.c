@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 11:03:22 by rgobet            #+#    #+#             */
-/*   Updated: 2024/09/28 10:29:36 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/09/30 11:31:16 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,28 @@ void	update_raycast(t_vars *vars, int x, double rotspeed)
 
 	olddirx = vars->raycast->dirx;
 	oldplanex = vars->raycast->planex;
+	printf("%lf, %lf\n", olddirx, vars->raycast->diry);
 	angle = (WIDTH / 2 - x) * rotspeed / WIDTH;
-	vars->raycast->dirx = vars->raycast->dirx * cos(angle) - vars->raycast->diry
-		* sin(angle);
-	vars->raycast->diry = olddirx * sin(angle) + vars->raycast->diry
-		* cos(angle);
-	vars->raycast->planex = vars->raycast->planex * cos(angle)
-		- vars->raycast->planey * sin(angle);
-	vars->raycast->planey = oldplanex * sin(angle) + vars->raycast->planey
-		* cos(angle);
+	if (vars->raycast->facing == SOUTH || vars->raycast->facing == WEST)
+	{
+		vars->raycast->dirx = vars->raycast->dirx * cos(-angle)
+			- vars->raycast->diry * sin(-angle);
+		vars->raycast->diry = olddirx * sin(-angle)
+			+ vars->raycast->diry * cos(-angle);
+		vars->raycast->planex = vars->raycast->planex * cos(-angle)
+			- vars->raycast->planey * sin(-angle);
+		vars->raycast->planey = oldplanex * sin(-angle)
+			+ vars->raycast->planey * cos(-angle);
+	}
+	else
+	{
+		vars->raycast->dirx = vars->raycast->dirx * cos(angle) - vars->raycast->diry
+			* sin(angle);
+		vars->raycast->diry = olddirx * sin(angle) + vars->raycast->diry
+			* cos(angle);
+		vars->raycast->planex = vars->raycast->planex * cos(angle)
+			- vars->raycast->planey * sin(angle);
+		vars->raycast->planey = oldplanex * sin(angle) + vars->raycast->planey
+			* cos(angle);
+	}
 }
