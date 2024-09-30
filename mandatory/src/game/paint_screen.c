@@ -17,7 +17,6 @@ void	paint_on_screen(t_vars *vars)
 	int	x;
 
 	x = 0;
-	printf("%lf, %lf\n", vars->raycast->dirx, vars->raycast->diry);
 	mlx_delete_image(vars->window, vars->images->screen);
 	vars->images->screen = mlx_new_image(vars->window, WIDTH, HEIGHT);
 	while (x < WIDTH)

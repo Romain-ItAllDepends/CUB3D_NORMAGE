@@ -61,8 +61,8 @@ void	put_pixels(t_vars *vars, int x)
 	i = 0;
 	while (i < vars->raycast->draw_start)
 	{
-		mlx_put_pixel(vars->images->screen, x, i, (vars->ceiling[0] << 24) | \
-		(vars->ceiling[1] << 16) | (vars->ceiling[2] << 8) | 255);
+		mlx_put_pixel(vars->images->screen, x, i, (vars->ceiling[0] << 24)
+			| (vars->ceiling[1] << 16) | (vars->ceiling[2] << 8) | 255);
 		i++;
 	}
 	while (i < vars->raycast->draw_end)
@@ -76,8 +76,8 @@ void	put_pixels(t_vars *vars, int x)
 	}
 	while (i < HEIGHT)
 	{
-		mlx_put_pixel(vars->images->screen, x, i, (vars->floor[0] << 24) | \
-		(vars->floor[1] << 16) | (vars->floor[2] << 8) | 255);
+		mlx_put_pixel(vars->images->screen, x, i, (vars->floor[0] << 24)
+			| (vars->floor[1] << 16) | (vars->floor[2] << 8) | 255);
 		i++;
 	}
 }
@@ -86,13 +86,13 @@ void	texture_coord(t_vars *vars)
 {
 	if (vars->raycast->side == 0)
 	{
-		vars->raycast->wallx = vars->raycast->posy + \
-		vars->raycast->perp_wall_dist * vars->raycast->ray_diry;
+		vars->raycast->wallx = vars->raycast->posy
+			+ vars->raycast->perp_wall_dist * vars->raycast->ray_diry;
 	}
 	else
 	{
-		vars->raycast->wallx = vars->raycast->posx + \
-		vars->raycast->perp_wall_dist * vars->raycast->ray_dirx;
+		vars->raycast->wallx = vars->raycast->posx
+			+ vars->raycast->perp_wall_dist * vars->raycast->ray_dirx;
 	}
 	vars->raycast->wallx -= floor((vars->raycast->wallx));
 	vars->raycast->texx = (int)(vars->raycast->wallx * (double)TEXWIDTH);
@@ -101,8 +101,8 @@ void	texture_coord(t_vars *vars)
 	if (vars->raycast->side == 1 && vars->raycast->ray_diry < 0)
 		vars->raycast->texx = TEXWIDTH - vars->raycast->texx - 1;
 	vars->raycast->step = 1.0 * TEXHEIGHT / vars->raycast->line_height;
-	vars->raycast->tex_pos = (vars->raycast->draw_start - HEIGHT / 2 + \
-	vars->raycast->line_height / 2) * vars->raycast->step;
+	vars->raycast->tex_pos = (vars->raycast->draw_start - HEIGHT / 2
+			+ vars->raycast->line_height / 2) * vars->raycast->step;
 }
 
 void	wall_start_end(t_vars *vars)

@@ -64,7 +64,7 @@ void	get_player_pos(t_vars *vars)
 	}
 }
 
-void	raycast_vars_init(t_vars *vars)
+static void	raycast_memory_init(t_vars *vars)
 {
 	vars->textures = ft_calloc(1, sizeof(t_textures));
 	if (!vars->textures)
@@ -85,6 +85,11 @@ void	raycast_vars_init(t_vars *vars)
 		vars->textures = NULL;
 		ft_free_vars(vars);
 	}
+}
+
+void	raycast_vars_init(t_vars *vars)
+{
+	raycast_memory_init(vars);
 	get_player_pos(vars);
 	if (vars->raycast->facing == NORTH || vars->raycast->facing == SOUTH)
 	{
