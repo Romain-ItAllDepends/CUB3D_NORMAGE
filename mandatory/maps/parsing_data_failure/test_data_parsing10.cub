@@ -1,9 +1,9 @@
                
-SO ./textures/no_right.png
-                  WE                           ./textures/all.png
+SO ./mandatory/textures/no_right.png
+                  WE                           ./mandatory/textures/all.png
 
-  NO ./textures/all.png
-EA                              ./textures/all.png
+  NO ./mandatory/textures/all.png
+EA                              ./mandatory/textures/all.png
 F                       220,100,0
                                            C                         250,30,0
 

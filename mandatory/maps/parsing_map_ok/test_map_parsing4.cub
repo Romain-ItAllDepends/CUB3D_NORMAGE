@@ -1,16 +1,16 @@
                
-SO ./textures/all.png
-                  WE                           ./textures/all.png
+SO ./mandatory/textures/all.png
+                  WE                           ./mandatory/textures/all.png
 
-  NO ./textures/all.png
-EA                              ./textures/all.png
+  NO ./mandatory/textures/all.png
+EA                              ./mandatory/textures/all.png
 F                       220,100,0
                                            C                         250,30,0
 
 
 
- 11111 
+111111
 1000001
- 110001
-   1N01
-    11 
+1110001
+11111N01
+1111111
