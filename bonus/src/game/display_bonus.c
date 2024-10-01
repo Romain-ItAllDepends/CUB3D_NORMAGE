@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 08:55:47 by rgobet            #+#    #+#             */
-/*   Updated: 2024/09/30 12:12:05 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/10/02 00:06:13 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,6 @@ void	raycast(t_vars *vars, int x)
 	wall_start_end(vars);
 	texture_coord(vars);
 	if (vars->raycast->facing == SOUTH || vars->raycast->facing == WEST)
-		x = abs(x - WIDTH);
+		x = abs(x - WIDTH - 1);
 	put_pixels(vars, x);
 }

@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 12:46:22 by rgobet            #+#    #+#             */
-/*   Updated: 2024/10/01 09:55:24 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/10/02 00:06:13 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	put_pixels(t_vars *vars, int x)
 		mlx_put_pixel(vars->images->screen, x, i, vars->raycast->color);
 		i++;
 	}
-	while (i < HEIGHT)
+	while (i < HEIGHT - 1)
 	{
 		mlx_put_pixel(vars->images->screen, x, i, (vars->floor[0] << 24)
 			| (vars->floor[1] << 16) | (vars->floor[2] << 8) | 255);
