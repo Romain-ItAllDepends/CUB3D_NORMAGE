@@ -171,6 +171,12 @@ void					build_mini_map(t_vars *vars);
 void					ft_shoot(t_vars *vars);
 void					update_raycast(t_vars *vars, int x, double rotspeed);
 void					mini_map(mlx_key_data_t key, void *param);
+void					right_and_left_south_west(t_vars *vars,
+							double moveSpeed);
+void					right_and_left_other(t_vars *vars, double moveSpeed);
+void					process_map_cell(t_vars *vars, int x, int y);
+void					display_map(t_vars *vars, int32_t color, int x, int y);
+int32_t					ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
 
 /*
  * Utils

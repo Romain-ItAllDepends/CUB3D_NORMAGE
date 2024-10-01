@@ -35,33 +35,11 @@ void	right_and_left(t_vars *vars, double moveSpeed)
 {
 	if (vars->raycast->facing == SOUTH || vars->raycast->facing == WEST)
 	{
-		if (mlx_is_key_down(vars->window, MLX_KEY_D)
-			&& (vars->map[(int)vars->raycast->posx][(int)(vars->raycast->posy
-				- vars->raycast->planey * moveSpeed)] != '1'
-				&& vars->map[(int)vars->raycast->posx][(int)(vars->raycast->posy
-					- vars->raycast->planey * moveSpeed)] != ' '))
-			left_utils(vars, MOVE_SPEED);
-		if (mlx_is_key_down(vars->window, MLX_KEY_A)
-			&& (vars->map[(int)(vars->raycast->posx + vars->raycast->planex
-					* moveSpeed)][(int)vars->raycast->posy] != '1'
-				&& vars->map[(int)(vars->raycast->posx + vars->raycast->planex
-					* moveSpeed)][(int)vars->raycast->posy] != ' '))
-			right_utils(vars, MOVE_SPEED);
+		right_and_left_south_west(vars, moveSpeed);
 	}
 	else
 	{
-		if (mlx_is_key_down(vars->window, MLX_KEY_A)
-			&& (vars->map[(int)vars->raycast->posx][(int)(vars->raycast->posy
-				- vars->raycast->planey * moveSpeed)] != '1'
-				&& vars->map[(int)vars->raycast->posx][(int)(vars->raycast->posy
-					- vars->raycast->planey * moveSpeed)] != ' '))
-			left_utils(vars, MOVE_SPEED);
-		if (mlx_is_key_down(vars->window, MLX_KEY_D)
-			&& (vars->map[(int)(vars->raycast->posx + vars->raycast->planex
-					* moveSpeed)][(int)vars->raycast->posy] != '1'
-				&& vars->map[(int)(vars->raycast->posx + vars->raycast->planex
-					* moveSpeed)][(int)vars->raycast->posy] != ' '))
-			right_utils(vars, MOVE_SPEED);
+		right_and_left_other(vars, moveSpeed);
 	}
 }
 
