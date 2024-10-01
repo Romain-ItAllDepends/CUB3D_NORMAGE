@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:14:48 by rgobet            #+#    #+#             */
-/*   Updated: 2024/09/25 11:41:14 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/10/01 13:58:45 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	get_borders(char *tab, char *line, int i)
 {
 	static int	n;
 
-	if (i == skip_space(line))
+	if (i == 0)
 	{
 		tab[n] = line[i];
 		n++;
