@@ -33,7 +33,7 @@ static void	check_first_last_line(char **map)
 	int	i;
 	int	last;
 
-	i = skip_space(map[0]);
+	i = 0;
 	last = len_db_char(map) - 1;
 	while (map && map[0] && map[0][i])
 	{
@@ -42,7 +42,7 @@ static void	check_first_last_line(char **map)
 		i++;
 	}
 	verify_map(map, i);
-	i = skip_space(map[last]);
+	i = 0;
 	while (map && map[last] && map[last][i])
 	{
 		if (map[last][i] != '1')
@@ -70,7 +70,7 @@ int	check_closed_map(char **map)
 		error_malloc(-1, map);
 	while (map[i])
 	{
-		j = skip_space(map[i]);
+		j = 0;
 		if (abs(ft_strlen(map[i]) - ft_strlen(map[i - 1])) >= 2 && i != 0)
 			check_diff_wall(map, tab, i);
 		while (map[i][j])
