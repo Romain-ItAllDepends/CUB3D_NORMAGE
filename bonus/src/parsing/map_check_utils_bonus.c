@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 01:17:40 by vgodart           #+#    #+#             */
-/*   Updated: 2024/09/28 10:29:40 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/10/01 08:44:47 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void	check_diff_wall_case1(char **map, char *tab, int x)
 	j = ft_strlen(map[x - 1]) - 1;
 	while (i != j)
 	{
-		if (map[x][i] != '1' && map[x][i] != ' ')
+		if (map[x][i] != '1')
 		{
 			free(map);
 			free(tab);
@@ -81,7 +81,7 @@ static void	check_diff_wall_case2(char **map, char *tab, int x)
 	j = ft_strlen(map[x - 1]) - 1;
 	while (j != i)
 	{
-		if (map[x - 1][j] != '1' && map[x - 1][j] != ' ')
+		if (map[x - 1][j] != '1')
 		{
 			free(map);
 			free(tab);

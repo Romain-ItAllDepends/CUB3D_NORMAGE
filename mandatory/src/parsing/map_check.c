@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 17:31:13 by rgobet            #+#    #+#             */
-/*   Updated: 2024/09/25 13:56:31 by rgobet           ###   ########.fr       */
+/*   Updated: 2024/10/01 08:46:32 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	verification_of_border(char *borders)
 	int	i;
 
 	i = 0;
-	while (borders && (borders[i] == '1' || borders[i] == ' '))
+	while (borders && borders[i] == '1')
 		i++;
 	if (i != ft_strlen(borders))
 	{
@@ -37,7 +37,7 @@ static void	check_first_last_line(char **map)
 	last = len_db_char(map) - 1;
 	while (map && map[0] && map[0][i])
 	{
-		if (map[0][i] != '1' && map[0][i] != ' ')
+		if (map[0][i] != '1')
 			break ;
 		i++;
 	}
@@ -45,7 +45,7 @@ static void	check_first_last_line(char **map)
 	i = skip_space(map[last]);
 	while (map && map[last] && map[last][i])
 	{
-		if (map[last][i] != '1' && map[last][i] != ' ')
+		if (map[last][i] != '1')
 			break ;
 		i++;
 	}
