@@ -50,14 +50,14 @@ void	resize_images(t_vars *vars)
 
 static void	weapons_setup(t_vars *vars)
 {
-	vars->textures->weapon1 = mlx_load_png("./textures/ak47.png");
+	vars->textures->weapon1 = mlx_load_png("./bonus/textures/ak47.png");
 	if (!vars->textures->weapon1)
 		texture_error(vars);
 	vars->images->weapon1 = mlx_texture_to_image(vars->window,
 			vars->textures->weapon1);
 	if (!vars->images->weapon1)
 		texture_error(vars);
-	vars->textures->weapon2 = mlx_load_png("./textures/cut.png");
+	vars->textures->weapon2 = mlx_load_png("./bonus/textures/cut.png");
 	if (!vars->textures->weapon2)
 		texture_error(vars);
 	vars->images->weapon2 = mlx_texture_to_image(vars->window,
@@ -84,7 +84,7 @@ void	setup_textures(t_vars *vars)
 	vars->textures->west = mlx_load_png(vars->west);
 	if (!vars->textures->west)
 		texture_error(vars);
-	vars->textures->crosshair = mlx_load_png("./textures/crosshair.png");
+	vars->textures->crosshair = mlx_load_png("./bonus/textures/crosshair.png");
 	if (!vars->textures->crosshair)
 		texture_error(vars);
 	vars->images->crosshair = mlx_texture_to_image(vars->window,

@@ -1,10 +1,10 @@
                
-SO ./textures/south.png
-                  WE                           ./textures/west.png
+SO ./bonus/textures/south.png
+                  WE                           ./bonus/textures/west.png
 
-  NO ./textures/north.png
+  NO ./bonus/textures/north.png
 
-EA                              ./textures/east.png
+EA                              ./bonus/textures/east.png
 F 80,250,50
                                            C     						250,30,50
 

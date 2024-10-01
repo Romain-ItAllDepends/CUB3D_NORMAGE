@@ -63,7 +63,8 @@ void	setup_textures(t_vars *vars)
 	vars->textures->west = mlx_load_png(vars->west);
 	if (!vars->textures->west)
 		texture_error(vars);
-	vars->textures->crosshair = mlx_load_png("./textures/crosshair.png");
+	vars->textures->crosshair
+		= mlx_load_png("./mandatory/textures/crosshair.png");
 	if (!vars->textures->crosshair)
 		texture_error(vars);
 	vars->images->crosshair = mlx_texture_to_image(vars->window,

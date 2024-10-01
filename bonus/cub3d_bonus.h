@@ -166,7 +166,8 @@ void					forward_and_back_utils_w(t_vars *vars,
 void					forward_and_back(t_vars *vars, double moveSpeed);
 void					right_and_left(t_vars *vars, double moveSpeed);
 void					right_and_left_other(t_vars *vars, double moveSpeed);
-void					right_and_left_south_west(t_vars *vars, double moveSpeed);
+void					right_and_left_south_west(t_vars *vars,
+							double moveSpeed);
 void					rotate_camera(t_vars *vars, double rotSpeed);
 void					player_on_mini_map(t_vars *vars);
 void					build_mini_map(t_vars *vars);
