@@ -69,7 +69,7 @@ void	get_borders(char *tab, char *line, int i)
 {
 	static int	n;
 
-	if (i == skip_space(line))
+	if (i == 0)
 	{
 		tab[n] = line[i];
 		n++;
