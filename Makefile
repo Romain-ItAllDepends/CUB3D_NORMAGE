@@ -66,6 +66,10 @@ MY_SOURCES_BONUS = bonus/src/core/main_bonus.c \
 
 MY_OBJECTS=$(MY_SOURCES:.c=.o)
 OBJS_BONUS=$(MY_SOURCES_BONUS:.c=.o)
+VERIF_DUP            = mkdir -p verif
+
+BONUS := verif/bonus
+STD := verif/mandatory
 
 white='\033[1;37m'
 
@@ -76,17 +80,25 @@ CFLAGS=-Wall -Wextra -Werror -I ./mandatory/MLX42/include
 CBFLAGS=-Wall -Wextra -Werror -I ./bonus/MLX42/include
 MLXFLAGS= -ldl -lX11 -lglfw -lm -lz -lbsd -lXext 
 
-all: $(NAME)
+all: $(STD) $(NAME)
 
-$(NAME) : $(MY_OBJECTS)
-	$(CC) $(CFLAGS) $(MY_OBJECTS) $(MLXFLAGS) ./mandatory/MLX42/build/libmlx42.a -o $@
+$(STD) : $(MY_OBJECTS)
+	$(CC) $(CFLAGS) $(MY_OBJECTS) $(MLXFLAGS) ./mandatory/MLX42/build/libmlx42.a -o $(NAME)
+	$(VERIF_DUP)
+	rm -f $(BONUS)
+	touch $(STD)
 	@clear
 	@if [ $$? -eq 0 ]; then \
 		echo $(light_cyan)"\t   »»-————　Make - Mandatory　————-««\n"; \
 	fi
 
-bonus: $(OBJS_BONUS)
+bonus: $(BONUS)
+
+$(BONUS) : $(OBJS_BONUS)
 	$(CC) $(CBFLAGS) $(OBJS_BONUS) $(MLXFLAGS) ./bonus/MLX42/build/libmlx42.a -o $(NAME)
+	$(VERIF_DUP)
+	rm -f $(STD)
+	touch $(BONUS)
 	@clear
 	@if [ $$? -eq 0 ]; then \
 		echo $(light_cyan)"\t   »»-————　Make - Bonus　————-««\n"; \
@@ -110,7 +122,8 @@ clean:
 	@$(RM) $(MY_OBJECTS) $(OBJS_BONUS)
 
 fclean: clean
-	@$(RM) $(NAME)
+	@$(RM) $(NAME) $(STD) $(BONUS)
+	@rm -rf verif
 	@echo $(white)"\t»»-————　Full clean　————-««\n"
 
 clean_mlx:
