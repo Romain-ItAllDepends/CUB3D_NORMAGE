@@ -86,7 +86,7 @@ $(NAME) : $(MY_OBJECTS)
 	fi
 
 bonus: $(OBJS_BONUS)
-	$(CC) $(CBFLAGS) $(OBJS_BONUS) $(MLXFLAGS) ./bonus/MLX42/build/libmlx42.a -o $@
+	$(CC) $(CBFLAGS) $(OBJS_BONUS) $(MLXFLAGS) ./bonus/MLX42/build/libmlx42.a -o $(NAME)
 	@clear
 	@if [ $$? -eq 0 ]; then \
 		echo $(light_cyan)"\t   »»-————　Make - Bonus　————-««\n"; \

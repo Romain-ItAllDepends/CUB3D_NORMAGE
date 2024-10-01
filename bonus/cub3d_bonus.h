@@ -6,7 +6,7 @@
 /*   By: rgobet <rgobet@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 09:41:36 by rgobet            #+#    #+#             */
-/*   Updated: 2024/09/28 10:18:19 by vgodart          ###   ########.fr       */
+/*   Updated: 2024/10/01 15:13:04 by rgobet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,12 +165,15 @@ void					forward_and_back_utils_w(t_vars *vars,
 							double moveSpeed);
 void					forward_and_back(t_vars *vars, double moveSpeed);
 void					right_and_left(t_vars *vars, double moveSpeed);
+void					right_and_left_other(t_vars *vars, double moveSpeed);
+void					right_and_left_south_west(t_vars *vars, double moveSpeed);
 void					rotate_camera(t_vars *vars, double rotSpeed);
 void					player_on_mini_map(t_vars *vars);
 void					build_mini_map(t_vars *vars);
 void					ft_shoot(t_vars *vars);
 void					update_raycast(t_vars *vars, int x, double rotspeed);
 void					mini_map(mlx_key_data_t key, void *param);
+void					process_map_cell(t_vars *vars, int x, int y);
 void					right_and_left_south_west(t_vars *vars,
 							double moveSpeed);
 void					right_and_left_other(t_vars *vars, double moveSpeed);
