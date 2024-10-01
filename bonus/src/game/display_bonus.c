@@ -109,5 +109,7 @@ void	raycast(t_vars *vars, int x)
 		= (int)(TEXHEIGHT / vars->raycast->perp_wall_dist);
 	wall_start_end(vars);
 	texture_coord(vars);
+	if (vars->raycast->facing == SOUTH || vars->raycast->facing == WEST)
+		x = abs(x - WIDTH);
 	put_pixels(vars, x);
 }

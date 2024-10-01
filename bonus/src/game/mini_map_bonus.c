@@ -67,7 +67,9 @@ void	build_mini_map(t_vars *vars)
 			color = -1;
 			if (vars->map[x][y] == '1' || vars->map[x][y] == ' ')
 				color = ft_pixel(255, 51, 51, 1000);
-			else if (vars->map[x][y] == '0' || vars->map[x][y] == 'N')
+			else if (vars->map[x][y] == '0' || vars->map[x][y] == 'N'
+				|| vars->map[x][y] == 'S' || vars->map[x][y] == 'E'
+				|| vars->map[x][y] == 'W')
 				color = ft_pixel(255, 255, 255, 0);
 			if (color == -1)
 				y++;
